@@ -67,6 +67,8 @@ def home():
 def search():
     if request.method == "POST":
         query = request.form.get("query")
+        if not query:
+            query = "A mountain in spring"
         style = request.form.get("style")
         scene = request.form.get("scene")
         medium = request.form.get("medium")
