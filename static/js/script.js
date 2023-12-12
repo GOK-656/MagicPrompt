@@ -28,15 +28,18 @@ $(".ui.multiple.selection.dropdown").dropdown({
 // switch filter dropdown on
 const filterSwitch = document.getElementById("icon-filter");
 const filterContent = document.getElementById("multiselect-wrapper");
-filterSwitch.addEventListener("click", function () {
-    const wrapper = this.closest("#search-bar");
-    wrapper.classList.toggle("open");
-});
+if (filterSwitch) {
+    filterSwitch.addEventListener("click", function () {
+        const wrapper = this.closest("#search-bar");
+        wrapper.classList.toggle("open");
+    });
+}
 
 // copy to clipboard
 const copyButtons = document.querySelectorAll(".pick-this");
 copyButtons.forEach(function (button) {
     button.addEventListener("click", function () {
+        console.log("copy button clicked");
         const text =
             this.parentNode.parentNode.querySelector(
                 ".prompt-text-p"

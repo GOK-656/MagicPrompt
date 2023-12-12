@@ -98,6 +98,10 @@ h1{
     margin: 5% 0;
 }
 
+#icon-filter:hover{
+    opacity: 0.6;
+}
+
 #search-header{
     display: flex;
 }

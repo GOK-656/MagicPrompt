@@ -17,7 +17,7 @@
 
 .results-wrapper{
     position: relative;
-    animation: moveRightToLeft 500s linear infinite;
+    animation: moveRightToLeft 1000s linear infinite;
     display: grid;
     grid-template-columns: repeat(100, 30%);
     grid-template-rows: 1fr;
