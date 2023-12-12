@@ -17,7 +17,7 @@
 
 .results-wrapper{
     position: relative;
-    animation: moveRightToLeft 50s linear infinite;
+    animation: moveRightToLeft 500s linear infinite;
     display: grid;
     grid-template-columns: repeat(100, 30%);
     grid-template-rows: 1fr;
@@ -26,10 +26,10 @@
 
 @keyframes moveRightToLeft {
     0% {
-      left: 100%; 
+      left: 1000%; 
     }
     100% {
-      left: -100%; 
+      left: -1000%; 
     }
 }
 
