@@ -59,25 +59,25 @@ copyButtons.forEach(function (button) {
     });
 });
 
-// const copyButtons_2 = document.querySelectorAll(".prompt-text-wrapper");
-// copyButtons_2.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//         console.log("copy button clicked");
-//         const text =
-//             this.parentNode.parentNode.querySelector(
-//                 ".prompt-text-p"
-//             ).textContent;
-//         navigator.clipboard.writeText(text).then(
-//             () => {
-//                 console.log("Copied to clipboard:", text);
-//                 this.classList.add("copied");
-//                 setTimeout(() => {
-//                     this.classList.remove("copied");
-//                 }, 200);
-//             },
-//             function (err) {
-//                 console.error("Async: Could not copy text: ", err);
-//             }
-//         );
-//     });
-// });
+const copyButtons_2 = document.querySelectorAll(".prompt-text-wrapper");
+copyButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        console.log("copy button clicked");
+        const text =
+            this.parentNode.parentNode.querySelector(
+                ".prompt-text-p"
+            ).textContent;
+        navigator.clipboard.writeText(text).then(
+            () => {
+                console.log("Copied to clipboard:", text);
+                this.classList.add("copied");
+                setTimeout(() => {
+                    this.classList.remove("copied");
+                }, 200);
+            },
+            function (err) {
+                console.error("Async: Could not copy text: ", err);
+            }
+        );
+    });
+});

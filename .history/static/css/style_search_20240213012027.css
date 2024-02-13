@@ -275,7 +275,7 @@ h1{
     align-items: flex-end;
     justify-content: center;
     text-align: center;
-    /* font-style: italic; */
+    font-style: italic;
     height: 100%;
     /* max-height: 30px; */
     overflow: hidden;
@@ -291,37 +291,27 @@ h1{
 }
 
 .prompt-text-wrapper:hover{
-    background: linear-gradient(to top, rgba(50, 50, 50, 0.5) 5%, transparent);
-    /* background-color: rgba(50, 50, 50, 0.7); */
-    /* cursor: pointer; */
+    background: linear-gradient(to top, rgba(50, 50, 50, 0.6) 5%, transparent);
 }
-
-/* .prompt-text-wrapper.copied{
-    background-color: rgba(50, 50, 50, 0.7);
-    transition: background-color 0.1s ease;
-} */
-
 
 .prompt-text-wrapper p {
-    display: none;
-}
-
-.prompt-text-wrapper:hover p{
-    display: block;
+    
     padding: 15px;
-    /* padding-bottom: 15px; */
-    /* padding: 15px 15px 60px 15px; */
-    /* height: auto; */
-    max-height: 30%;
+    /* padding-bottom: 0; */
+    /* padding: 15px 15px 0 15px; */
+    height: 25%;
     /* overflow: hidden; */
     text-overflow: ellipsis;
     /* background-color: rgba(50, 50, 50, 0.7); */
     border-radius: 30px 30px 0 0;
-    /* transition: height 0.5s ease; */
+    transition: height 0.5s ease;
     width: 100%;
     margin: 0;
-    margin-bottom: 2%;
 }
+
+/* .prompt-text-wrapper p:hover{
+    height: 60%;
+} */
 
 /* color see here:
 https://colorhunt.co/palette/ff90bcffc0d9f9f9e08acdd7 
