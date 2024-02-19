@@ -3,7 +3,7 @@ from document_preprocessor import *
 from indexing import *
 from ranker import *
 import pandas as pd
-
+from image2text import *
 app = Flask(__name__)
 
 
@@ -70,6 +70,39 @@ def home():
 def search():
     if request.method == "POST":
         query = request.form.get("query")
+        if not query:
+            query = "A mountain in spring with white cloud"
+        style = request.form.get("style")
+        scene = request.form.get("scene")
+        medium = request.form.get("medium")
+        light = request.form.get("light")
+        quality = request.form.get("quality")
+        print(query)
+        print(style)
+        print(scene)
+        print(medium)
+        print(light)
+        print(quality)
+        args = [style, scene, medium, light, quality]
+        prompts, urls = get_results_all(engine, query, 200, args)
+        result = list(zip(prompts, urls))
+        return render_template(
+            "search.html",
+            result=result,
+            query=query,
+            style=style,
+            scene=scene,
+            medium=medium,
+            light=light,
+            quality=quality,
+        )
+    return redirect(url_for("home"))
+
+@app.route("/search_picture", methods=["POST", "GET"])
+def search_picture():
+    if request.method == "POST":
+        query=request.files['img']
+        query = image2textData(query)
         if not query:
             query = "A mountain in spring with white cloud"
         style = request.form.get("style")
