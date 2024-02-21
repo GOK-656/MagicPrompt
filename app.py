@@ -30,7 +30,7 @@ def initialize_all():
 
 
 def get_results_all(ranker, query, top_n, args=None):
-    DATASET_CSV_PATH = "data/data.csv.zip"
+    DATASET_CSV_PATH = "data/data_with_labels.csv.zip"
     results = ranker.query(query)
     docids = [result[0] for result in results]
     df = pd.read_csv(DATASET_CSV_PATH)
