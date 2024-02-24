@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include "base_head.html"%}
+
+    <head>
+        <link
+            rel="stylesheet"
+            href="static/css/style_search.css"
+            type="text/css"
+        />
+        <link
+            rel="stylesheet"
+            href="static/css/style_index.css"
+            type="text/css"
+        />
+    </head>
+
+    <body>
+        <nav>
+            <div id="nav-title"><a href="/">Magic Prompt</a></div>
+            <div id="nav-link">
+                <a href="/">Home</a>
+                <a href="/generate" class="page_this">Generate</a>
+            </div>
+        </nav>
+
+        <main>
+            <div id="search-header">
+                <div id="introduce-header">
+                    <h1>Explore the world's best AIGC prompts.</h1>
+                    <p>Prefer. Search again. No end.</p>
+                </div>
+
+                <div id="search-bar">
+                    <form action="/search" method="POST" id="myForm">
+                        <div id="input-wrapper-filter">
+                            <div id="input-wrapper">
+                                <img
+                                    src="static/src/magnifying-glass-solid.svg"
+                                    alt="search icon"
+                                    width="15"
+                                    height="15"
+                                    id="icon-magnifying-glass"
+                                />
+                                <input
+                                    type="text"
+                                    name="query"
+                                    placeholder="A mountain in spring"
+                                    value="{{query}}"
+                                />
+                            </div>
+                        </div>
+                        <!-- <input type="submit" value="submit" /> -->
+                    </form>
+                </div>
+            </div>
+
+            <div class="results-wrapper">
+                {% for value in result %}
+                <div class="single-result-card">
+                    <img src="{{ value[1] }}" alt="Image" />
+                    <div class="prompt-text-wrapper">
+                        <p class="prompt-text-p">{{ value[0] }}</p>
+                    </div>
+                    <form action="/search" method="POST">
+                        <input
+                            type="hidden"
+                            name="query"
+                            value="{{ value[0] }}"
+                        />
+                        <!-- <input type="hidden" name="query" value="{{ value[2] }}" /> -->
+                        <!-- <input type="hidden" name="title" value="{{ value[0] }}" /> -->
+                        <input type="submit" value="Find Similar" />
+                        <div class="pick-this">
+                            <span>Copy</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="16"
+                                width="14"
+                                viewBox="0 0 448 512"
+                                class="icon-copy"
+                            >
+                                <path
+                                    d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+        <script src="static/js/script.js"></script>
+    </body>
+</html>

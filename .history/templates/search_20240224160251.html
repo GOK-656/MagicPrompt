@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+    {% include "base_head.html"%}
+
+    <head>
+        <link
+            rel="stylesheet"
+            href="static/css/style_search.css"
+            type="text/css"
+        />
+    </head>
+
+    <body>
+        <nav>
+            <div id="nav-title"><a href="/">Magic Prompt</a></div>
+            <div id="nav-link">
+                <a href="/" class="page_this">Home</a>
+                <a href="/search">Search</a>
+                <a href="/generate">Generate</a>
+            </div>
+        </nav>
+
+        <main>
+            <div id="search-header">
+            {% if style or scene or medium or light or quality %}
+                <div id="search-bar" class="open">
+            {% else %}
+                <div id="search-bar">
+            {% endif %}
+                    <form action="/search" method="POST" id="myForm">
+                        <div id="input-wrapper-filter">
+                            <div id="input-wrapper">
+                                <img
+                                    src="static/src/magnifying-glass-solid.svg"
+                                    alt="search icon"
+                                    width="15"
+                                    height="15"
+                                    id="icon-magnifying-glass"
+                                />
+                                <input
+                                    type="text"
+                                    name="query"
+                                    placeholder="A mountain in spring"
+                                    value="{{query}}"
+                                />
+                            </div>
+                            <img
+                                src="static/src/filter.svg"
+                                alt="search icon"
+                                width="15"
+                                height="15"
+                                id="icon-filter"
+                            />
+                        </div>
+                        <!-- <input type="submit" value="submit" /> -->
+
+                        <div id="multiselect-wrapper">
+                            <!-- multiselect for style-->
+                            <div class="multiselect-single-wrapper">
+                                <label for="style">Style</label>
+                                <div id="multiselect-style">
+                                    <div
+                                        class="ui multiple selection dropdown"
+                                        id="style-select"
+                                    >
+                                        {% if style %}
+                                        <input
+                                            name="style"
+                                            type="hidden"
+                                            value="{{ style }}"
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% for s in style.split(',') %}
+                                        <div
+                                            class="ui label transition visible"
+                                            data-value="{{ s }}"
+                                            style="
+                                                display: inline-block !important;
+                                            "
+                                        >
+                                            {{ s }}<i class="delete icon"></i>
+                                        </div>
+                                        {% endfor %} {% else %}
+                                        <input
+                                            name="style"
+                                            type="hidden"
+                                            value=""
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% endif %}
+                                        <div class="default text">
+                                            Choose a style.
+                                        </div>
+                                        <div class="menu">
+                                            <div
+                                                class="item"
+                                                data-value="comics"
+                                            >
+                                                Comics
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="dreamworks"
+                                            >
+                                                Dreamworks
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="pixar"
+                                            >
+                                                Pixar
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="realism"
+                                            >
+                                                Realism
+                                            </div>
+                                            <div class="item" data-value="90s">
+                                                90s
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="bauhaus"
+                                            >
+                                                Bauhaus
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="country"
+                                            >
+                                                Country
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="steampunk"
+                                            >
+                                                Steampunk
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="gothic"
+                                            >
+                                                Gothic
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="baroque"
+                                            >
+                                                Baroque
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="fauvism"
+                                            >
+                                                Fauvism
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="surrealism"
+                                            >
+                                                Surrealism
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="optical"
+                                            >
+                                                Optical
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="pokemon"
+                                            >
+                                                Pokemon
+                                            </div>
+                                            <div class="item" data-value="botw">
+                                                BotW
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="ghibli"
+                                            >
+                                                Ghibli
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="miyazaki"
+                                            >
+                                                Miyazaki
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="doodle"
+                                            >
+                                                Doodle
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="concept"
+                                            >
+                                                Concept
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="portrait"
+                                            >
+                                                Portrait
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="sketching"
+                                            >
+                                                Sketching
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="cinematic"
+                                            >
+                                                Cinematic
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="hyperrealism"
+                                            >
+                                                Hyperrealism
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="sophisticated"
+                                            >
+                                                Sophisticated
+                                            </div>
+                                            <div class="item" data-value="3d">
+                                                3D
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="voynich-manuscript"
+                                            >
+                                                Voynich Manuscript
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="partial-anatomy"
+                                            >
+                                                Partial Anatomy
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="quilted"
+                                            >
+                                                Quilted
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="digital"
+                                            >
+                                                Digital
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="video"
+                                            >
+                                                Video
+                                            </div>
+                                            <div class="item" data-value="game">
+                                                Game
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="photo"
+                                            >
+                                                Photo
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="cartoon"
+                                            >
+                                                Cartoon
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="painting"
+                                            >
+                                                Painting
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="chinese"
+                                            >
+                                                Chinese
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="cyberpunk"
+                                            >
+                                                Cyberpunk
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="fashion"
+                                            >
+                                                Fashion
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="design"
+                                            >
+                                                Design
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="modern"
+                                            >
+                                                Modern
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- multiselect for medium-->
+                            <div class="multiselect-single-wrapper">
+                                <label for="medium">Medium</label>
+                                <div id="multiselect-medium">
+                                    <div
+                                        class="ui multiple selection dropdown"
+                                        id="medium-select"
+                                    >
+                                        {% if medium %}
+                                        <input
+                                            name="medium"
+                                            type="hidden"
+                                            value="{{ medium }}"
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% for m in medium.split(',') %}
+                                        <div
+                                            class="ui label transition visible"
+                                            data-value="{{ m }}"
+                                            style="
+                                                display: inline-block !important;
+                                            "
+                                        >
+                                            {{ m }}<i class="delete icon"></i>
+                                        </div>
+                                        {% endfor %} {% else %}
+                                        <input
+                                            name="medium"
+                                            type="hidden"
+                                            value=""
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% endif %}
+                                        <div class="default text">
+                                            Choose a medium.
+                                        </div>
+                                        <div class="menu">
+                                            <div
+                                                class="item"
+                                                data-value="illustrations"
+                                            >
+                                                Illustrations
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="vector"
+                                            >
+                                                Vector
+                                            </div>
+                                            <div class="item" data-value="oil">
+                                                Oil
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="photography"
+                                            >
+                                                Photography
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="watercolor"
+                                            >
+                                                Watercolor
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="sketch"
+                                            >
+                                                Sketch
+                                            </div>
+                                            <div class="item" data-value="ink">
+                                                Ink
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="sculpture"
+                                            >
+                                                Sculpture
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="manuscript"
+                                            >
+                                                Manuscript
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="painting"
+                                            >
+                                                Painting
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="drawing"
+                                            >
+                                                Drawing
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- multiselect for light-->
+                            <div class="multiselect-single-wrapper">
+                                <label for="light">Light</label>
+                                <div id="multiselect-light">
+                                    <div
+                                        class="ui multiple selection dropdown"
+                                        id="light-select"
+                                    >
+                                        {% if light %}
+                                        <input
+                                            name="light"
+                                            type="hidden"
+                                            value="{{ light }}"
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% for l in light.split(',') %}
+                                        <div
+                                            class="ui label transition visible"
+                                            data-value="{{ l }}"
+                                            style="
+                                                display: inline-block !important;
+                                            "
+                                        >
+                                            {{ l }}<i class="delete icon"></i>
+                                        </div>
+                                        {% endfor %} {% else %}
+                                        <input
+                                            name="light"
+                                            type="hidden"
+                                            value=""
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% endif %}
+                                        <div class="default text">
+                                            Choose a light.
+                                        </div>
+                                        <div class="menu">
+                                            <div
+                                                class="item"
+                                                data-value="moody"
+                                            >
+                                                Moody
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="studio"
+                                            >
+                                                Studio
+                                            </div>
+                                            <div class="item" data-value="cove">
+                                                Cove
+                                            </div>
+                                            <div class="item" data-value="soft">
+                                                Soft
+                                            </div>
+                                            <div class="item" data-value="hard">
+                                                Hard
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="volumetric"
+                                            >
+                                                Volumetric
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="low-key"
+                                            >
+                                                Low-key
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="high-key"
+                                            >
+                                                High-key
+                                            </div>
+                                            <div class="item" data-value="epic">
+                                                Epic
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="rembrandt"
+                                            >
+                                                Rembrandt
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="contre-jour"
+                                            >
+                                                Contre-jour
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="veiling-flare"
+                                            >
+                                                Veiling Flare
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="crepuscular"
+                                            >
+                                                Crepuscular
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="rays-of-shimmering"
+                                            >
+                                                Rays of Shimmering
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="godrays"
+                                            >
+                                                Godrays
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- multiselect for quality-->
+                            <div class="multiselect-single-wrapper">
+                                <label for="quality">Quality</label>
+                                <div id="multiselect-quality">
+                                    <div
+                                        class="ui multiple selection dropdown"
+                                        id="quality-select"
+                                    >
+                                        {% if quality %}
+                                        <input
+                                            name="quality"
+                                            type="hidden"
+                                            value="{{ quality }}"
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% for q in quality.split(',') %}
+                                        <div
+                                            class="ui label transition visible"
+                                            data-value="{{ q }}"
+                                            style="
+                                                display: inline-block !important;
+                                            "
+                                        >
+                                            {{ q }}<i class="delete icon"></i>
+                                        </div>
+                                        {% endfor %} {% else %}
+                                        <input
+                                            name="quality"
+                                            type="hidden"
+                                            value=""
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% endif %}
+                                        <div class="default text">
+                                            Choose a quality.
+                                        </div>
+                                        <div class="menu">
+                                            <div class="item" data-value="16k">
+                                                16K
+                                            </div>
+                                            <div class="item" data-value="8k">
+                                                8K
+                                            </div>
+                                            <div class="item" data-value="4k">
+                                                4K
+                                            </div>
+                                            <div class="item" data-value="2k">
+                                                2K
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="high-resolution"
+                                            >
+                                                High Resolution
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="low-resolution"
+                                            >
+                                                Low Resolution
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="high-quality"
+                                            >
+                                                High Quality
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="low-quality"
+                                            >
+                                                Low Quality
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- multiselect for scene-->
+                            <div class="multiselect-single-wrapper">
+                                <label for="scene">Scene</label>
+                                <div id="multiselect-scene">
+                                    <div
+                                        class="ui multiple selection dropdown"
+                                        id="scene-select"
+                                    >
+                                        {% if scene %}
+                                        <input
+                                            name="scene"
+                                            type="hidden"
+                                            value="{{ scene }}"
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% for s in scene.split(',') %}
+                                        <div
+                                            class="ui label transition visible"
+                                            data-value="{{ s }}"
+                                            style="
+                                                display: inline-block !important;
+                                            "
+                                        >
+                                            {{ s }}<i class="delete icon"></i>
+                                        </div>
+                                        {% endfor %} {% else %}
+                                        <input
+                                            name="scene"
+                                            type="hidden"
+                                            value=""
+                                        />
+                                        <i class="dropdown icon"></i>
+                                        {% endif %}
+                                        <div class="default text">
+                                            Choose a scene.
+                                        </div>
+                                        <div class="menu">
+                                            <div
+                                                class="item"
+                                                data-value="utopia"
+                                            >
+                                                Utopia
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="fantasy"
+                                            >
+                                                Fantasy
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="whimsically"
+                                            >
+                                                Whimsically
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="deserted"
+                                            >
+                                                Deserted
+                                            </div>
+                                            <div class="item" data-value="city">
+                                                City
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="street"
+                                            >
+                                                Street
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="universe"
+                                            >
+                                                Universe
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="morning"
+                                            >
+                                                Morning
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="sunlight"
+                                            >
+                                                Sunlight
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="galaxy"
+                                            >
+                                                Galaxy
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="dungeon"
+                                            >
+                                                Dungeon
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="nebula"
+                                            >
+                                                Nebula
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="garden"
+                                            >
+                                                Garden
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="babylon"
+                                            >
+                                                Babylon
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="meadow"
+                                            >
+                                                Meadow
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="nature"
+                                            >
+                                                Nature
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="apocalyptic"
+                                            >
+                                                Apocalyptic
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="castle"
+                                            >
+                                                Castle
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="forest"
+                                            >
+                                                Forest
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="ruins"
+                                            >
+                                                Ruins
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="classroom"
+                                            >
+                                                Classroom
+                                            </div>
+                                            <div class="item" data-value="city">
+                                                City
+                                            </div>
+                                            <div class="item" data-value="rain">
+                                                Rain
+                                            </div>
+                                            <div class="item" data-value="sky">
+                                                Sky
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="geography"
+                                            >
+                                                Geography
+                                            </div>
+                                            <div
+                                                class="item"
+                                                data-value="architectural"
+                                            >
+                                                Architectural
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- <h1>Discover better prompts about "{{query}}"</h1> -->
+            </div>
+
+            <div class="results-wrapper">
+                {% if not result %}
+                <p id="no-results">
+                    Sorry, no results. Try adjusting your selected filters to
+                    see different results.
+                </p>
+                {% endif %} {% for value in result %}
+                <div class="single-result-card">
+                    <img src="{{ value[1] }}" alt="Image" />
+                    <div class="prompt-text-wrapper">
+                        <p class="prompt-text-p">{{ value[0] }}</p>
+                    </div>
+                    <form action="/search" method="POST">
+                        <input
+                            type="hidden"
+                            name="query"
+                            value="{{ value[0] }}"
+                        />
+                        <!-- <input type="hidden" name="query" value="{{ value[2] }}" /> -->
+                        <!-- <input type="hidden" name="title" value="{{ value[0] }}" /> -->
+                        <input type="submit" value="Find Similar" />
+                        <div class="pick-this">
+                            <span>Copy</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="16"
+                                width="14"
+                                viewBox="0 0 448 512"
+                                class="icon-copy"
+                            >
+                                <path
+                                    d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+        <script src="static/js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+#search-header{
+    margin-top: 15%;
+    margin-bottom: 15%;
+    display: block;
+}
+
+#introduce-header {
+    /* margin-top: 10%; */
+    /* margin-bottom: 5%; */
+    margin: 5% auto;
+}
+
+#introduce-header p{
+    font-family: "SF Pro Text";
+    margin-top: 3%;
+}
+
+.results-wrapper{
+    position: relative;
+    animation: moveRightToLeft 1000s linear infinite;
+    display: grid;
+    grid-template-columns: repeat(100, 30%);
+    grid-template-rows: 1fr;
+    grid-auto-flow: row;
+}
+
+@keyframes moveRightToLeft {
+    0% {
+      left: 1000%; 
+    }
+    100% {
+      left: -1000%; 
+    }
+}
+
+.results-wrapper:hover{
+    animation-play-state: paused;
+}
