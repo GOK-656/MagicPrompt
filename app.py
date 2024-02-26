@@ -4,6 +4,8 @@ from indexing import *
 from ranker import *
 import pandas as pd
 from image2text import *
+from doinstruct_pix2pix import *
+
 app = Flask(__name__)
 
 
@@ -131,6 +133,37 @@ def search_picture():
         )
     return redirect(url_for("home"))
 
+@app.route("/submit_a_picture", methods=["POST", "GET"])
+def submit_a_picture():
+    if request.method == "POST":
+        query=request.files['img']
+        text = image2textData(query)
+        query.save("temp.jpeg")
+       
+        # ans=getResult("Add an eyeglass above the eye")
+        # print(ans)
+        # print(ans[0])
+        return render_template(
+            "current_picture.html",
+            currentValue=text,
+            pic="0"
+        )
+    return redirect(url_for("home"))
+
+@app.route("/search_change", methods=["POST", "GET"])
+def search_change():
+    if request.method == "POST":
+        query = request.form.get("willing_change")
+        result = getResult(query)
+        # ans=getResult("Add an eyeglass above the eye")
+        # print(ans)
+        # print(ans[0])
+        return render_template(
+            "current_picture.html",
+            currentValue=query,
+            pic=result[0]
+        )
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     # engine = initialize_all()
