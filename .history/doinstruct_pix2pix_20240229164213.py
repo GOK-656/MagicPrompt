@@ -65,7 +65,7 @@ def getResult(inputPromt):
     img_src = img_element.get_attribute("src")
     img_src = img_src.split(",")[1]
     img_data = base64.b64decode(img_src)
-    img = Image.open(BytesIO(img_data))
+    img = Image.open(io.BytesIO(img_data))
     img.save("tmp/output.jpg")
 
     # output = replicate.run(

@@ -7,6 +7,8 @@ from image2text import *
 from doinstruct_pix2pix import *
 
 app = Flask(__name__)
+UPLOAD_FOLDER = "uploads"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 def initialize_all():

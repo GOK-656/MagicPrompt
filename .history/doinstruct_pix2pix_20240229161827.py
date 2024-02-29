@@ -5,10 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import (
-    StaleElementReferenceException,
-    NoSuchElementException,
-)
+from selenium.common.exceptions import StaleElementReferenceException
 from bs4 import BeautifulSoup
 import requests
 import re
@@ -16,8 +13,6 @@ import time
 from urllib.parse import urlparse
 from PIL import Image
 import os
-import base64
-from io import BytesIO
 
 
 def getResult(inputPromt):
@@ -37,37 +32,15 @@ def getResult(inputPromt):
     iframe = driver.find_element(By.TAG_NAME, "iframe")
     driver.switch_to.frame(iframe)
     file_input = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-    current_path = os.getcwd()
-    file_input.send_keys(os.path.join(current_path, "tmp/test.jpg"))
+    file_input.send_keys("static/tmp/input.jpg")
     textarea = driver.find_element(By.CSS_SELECTOR, "textarea[data-testid='textbox']")
     textarea.clear()
     textarea.send_keys(inputPromt)
     generate_button = driver.find_element(By.ID, "component-4")
     generate_button.click()
-
-    # img_element = driver.find_element(By.CSS_SELECTOR, "#component-14 img")
-
-    max_attempts = 30
-    attempt = 0
-
-    while attempt < max_attempts:
-        try:
-            img_element = driver.find_element(By.CSS_SELECTOR, "#component-14 img")
-            break
-        except NoSuchElementException:
-            print(f"Element not found, attempt {attempt+1}...")
-            attempt += 1
-            time.sleep(1)
-
-    if attempt == max_attempts:
-        print("Element not found after maximum attempts.")
-
+    img_element = driver.find_element(By.CSS_SELECTOR, "#component-14 img")
     img_src = img_element.get_attribute("src")
-    img_src = img_src.split(",")[1]
-    img_data = base64.b64decode(img_src)
-    img = Image.open(BytesIO(img_data))
-    img.save("tmp/output.jpg")
-
+    img_src.save("result.jpeg")
     # output = replicate.run(
     #     "timothybrooks/instruct-pix2pix:30c1d0b916a6f8efce20493f5d61ee27491ab2a60437c13c588468b9810ec23f",
     #     input={
@@ -84,4 +57,4 @@ def getResult(inputPromt):
     # return output
 
 
-getResult("add a bird to the sky")
+getResult("add a glass")

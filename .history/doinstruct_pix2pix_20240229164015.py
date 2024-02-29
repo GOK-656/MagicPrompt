@@ -17,7 +17,6 @@ from urllib.parse import urlparse
 from PIL import Image
 import os
 import base64
-from io import BytesIO
 
 
 def getResult(inputPromt):
@@ -63,9 +62,7 @@ def getResult(inputPromt):
         print("Element not found after maximum attempts.")
 
     img_src = img_element.get_attribute("src")
-    img_src = img_src.split(",")[1]
-    img_data = base64.b64decode(img_src)
-    img = Image.open(BytesIO(img_data))
+    img = Image.open(requests.get(img_src, stream=True).raw)
     img.save("tmp/output.jpg")
 
     # output = replicate.run(

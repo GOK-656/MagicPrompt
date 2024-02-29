@@ -100,11 +100,10 @@ def search():
         )
     return redirect(url_for("home"))
 
-
 @app.route("/search_picture", methods=["POST", "GET"])
 def search_picture():
     if request.method == "POST":
-        query = request.files["img"]
+        query=request.files['img']
         query = image2textData(query)
         if not query:
             query = "A mountain in spring with white cloud"
@@ -134,20 +133,22 @@ def search_picture():
         )
     return redirect(url_for("home"))
 
-
 @app.route("/submit_a_picture", methods=["POST", "GET"])
 def submit_a_picture():
     if request.method == "POST":
-        query = request.files["img"]
+        query=request.files['img']
         text = image2textData(query)
         query.save("temp.jpeg")
-
+       
         # ans=getResult("Add an eyeglass above the eye")
         # print(ans)
         # print(ans[0])
-        return render_template("current_picture.html", currentValue=text, pic="0")
+        return render_template(
+            "current_picture.html",
+            currentValue=text,
+            pic="0"
+        )
     return redirect(url_for("home"))
-
 
 @app.route("/search_change", methods=["POST", "GET"])
 def search_change():
@@ -161,10 +162,11 @@ def search_change():
         # print(ans)
         # print(ans[0])
         return render_template(
-            "current_picture.html", currentValue=query, pic=result[0]
+            "current_picture.html",
+            currentValue=query,
+            pic=result[0]
         )
     return redirect(url_for("home"))
-
 
 if __name__ == "__main__":
     # engine = initialize_all()

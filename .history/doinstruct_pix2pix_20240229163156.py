@@ -5,10 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import (
-    StaleElementReferenceException,
-    NoSuchElementException,
-)
+from selenium.common.exceptions import StaleElementReferenceException
 from bs4 import BeautifulSoup
 import requests
 import re
@@ -16,8 +13,6 @@ import time
 from urllib.parse import urlparse
 from PIL import Image
 import os
-import base64
-from io import BytesIO
 
 
 def getResult(inputPromt):
@@ -45,29 +40,25 @@ def getResult(inputPromt):
     generate_button = driver.find_element(By.ID, "component-4")
     generate_button.click()
 
-    # img_element = driver.find_element(By.CSS_SELECTOR, "#component-14 img")
-
-    max_attempts = 30
+    img_element = driver.find_element(By.CSS_SELECTOR, "#component-14 img")
+    max_attempts = 10
     attempt = 0
 
     while attempt < max_attempts:
         try:
+            # 尝试查找元素
             img_element = driver.find_element(By.CSS_SELECTOR, "#component-14 img")
-            break
+            break  # 如果成功找到元素，跳出循环
         except NoSuchElementException:
             print(f"Element not found, attempt {attempt+1}...")
             attempt += 1
-            time.sleep(1)
+            time.sleep(1)  # 可以添加适当的延迟，避免过快地发送请求
 
     if attempt == max_attempts:
         print("Element not found after maximum attempts.")
 
     img_src = img_element.get_attribute("src")
-    img_src = img_src.split(",")[1]
-    img_data = base64.b64decode(img_src)
-    img = Image.open(BytesIO(img_data))
-    img.save("tmp/output.jpg")
-
+    img_src.save("result.jpeg")
     # output = replicate.run(
     #     "timothybrooks/instruct-pix2pix:30c1d0b916a6f8efce20493f5d61ee27491ab2a60437c13c588468b9810ec23f",
     #     input={
