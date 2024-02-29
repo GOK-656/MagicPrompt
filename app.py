@@ -154,6 +154,9 @@ def submit_a_picture():
 def search_change():
     if request.method == "POST":
         query = request.form.get("willing_change")
+        print(query)
+        print(request.form)
+        exit()
         result = getResult(query)
         # ans=getResult("Add an eyeglass above the eye")
         # print(ans)
