@@ -5,8 +5,10 @@ from ranker import *
 import pandas as pd
 from image2text import *
 from doinstruct_pix2pix import *
+import tempfile
 
 app = Flask(__name__)
+app.config["TEMP_FOLDER"] = "tmp/"
 
 
 def initialize_all():
@@ -140,12 +142,24 @@ def submit_a_picture():
     if request.method == "POST":
         query = request.files["img"]
         text = image2textData(query)
-        query.save("temp.jpeg")
+        # with tempfile.NamedTemporaryFile() as temp_file:
+        #     query.save(temp_file.name)
+        #     temp_file_path = temp_file.name
+        #     print(temp_file_path)
+        #     img2url(open(temp_file_path, "rb"))
+        img = Image.open(query)
+        save_path = "tmp/" + query.filename
+        img.save(save_path)
+        img_stream = ""
+        with open(save_path, "rb") as img_file:
+            img_stream = base64.b64encode(img_file.read()).decode("utf-8")
 
         # ans=getResult("Add an eyeglass above the eye")
         # print(ans)
         # print(ans[0])
-        return render_template("current_picture.html", currentValue=text, pic="0")
+        return render_template(
+            "current_picture.html", currentValue=text, pic="0", img_stream=img_stream
+        )
     return redirect(url_for("home"))
 
 
