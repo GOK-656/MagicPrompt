@@ -1,18 +1,27 @@
 // delete images on error
-const images = document.querySelectorAll("img");
+// const images = document.querySelectorAll("img");
 
-images.forEach(function (image) {
-    image.addEventListener("error", function () {
-        console.error("Image load error:", image.src);
-        console.log("404 image:", image.src);
-        const parentElement = image.parentElement;
-        if (parentElement) {
-            console.log("parentElement:", parentElement);
-            parentElement.remove();
-            console.log("image removed");
-        }
-    });
-});
+// images.forEach(function (image) {
+//     image.addEventListener("error", function () {
+//         console.error("Image load error:", image.src);
+//         console.log("404 image:", image.src);
+//         const parentElement = image.parentElement;
+//         if (parentElement) {
+//             console.log("parentElement:", parentElement);
+//             parentElement.remove();
+//             console.log("image removed");
+//         }
+//     });
+// });
+function imgError(img) {
+    console.log("Image error:", img.src);
+    const parentElement = img.parentElement;
+    if (parentElement) {
+        console.log("parentElement:", parentElement);
+        parentElement.remove();
+        console.log("image removed");
+    }
+}
 
 // multiselect dropdown
 const myForm = document.getElementById("myForm");
