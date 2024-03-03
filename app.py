@@ -34,7 +34,7 @@ def initialize_all():
 
 
 def get_results_all(ranker, query, top_n, args=None):
-    DATASET_CSV_PATH = "data/data.csv.zip"
+    DATASET_CSV_PATH = "data/data_with_labels.csv.zip"
     results = ranker.query(query)
     docids = [result[0] for result in results]
     df = pd.read_csv(DATASET_CSV_PATH)
@@ -63,11 +63,11 @@ engine = initialize_all()
 
 @app.route("/")
 def home():
-    query = "A mountain in spring"
+    query = "A mountain in spring with white cloud"
     print(query)
     prompts, urls = get_results_all(engine, query, 200)
     result = list(zip(prompts, urls))
-    return render_template("index.html", result=result)
+    return render_template("index.html", result=result, query=query)
 
 
 @app.route("/search", methods=["POST", "GET"])
