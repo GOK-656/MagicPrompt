@@ -59,7 +59,7 @@ engine = initialize_all()
 
 @app.route("/")
 def home():
-    query = "A mountain in spring"
+    query = "A mountain in spring with white cloud"
     print(query)
     prompts, urls = get_results_all(engine, query, 200)
     result = list(zip(prompts, urls))
