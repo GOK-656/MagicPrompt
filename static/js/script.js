@@ -13,15 +13,15 @@
 //         }
 //     });
 // });
-function imgError(img) {
-    console.log("Image error:", img.src);
-    const parentElement = img.parentElement;
-    if (parentElement) {
-        console.log("parentElement:", parentElement);
-        parentElement.remove();
-        console.log("image removed");
-    }
-}
+// function imgError(img) {
+//     console.log("Image error:", img.src);
+//     const parentElement = img.parentElement;
+//     if (parentElement) {
+//         console.log("parentElement:", parentElement);
+//         parentElement.remove();
+//         console.log("image removed");
+//     }
+// }
 
 // multiselect dropdown
 const myForm = document.getElementById("myForm");
