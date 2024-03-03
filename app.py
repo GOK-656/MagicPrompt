@@ -63,7 +63,7 @@ def home():
     print(query)
     prompts, urls = get_results_all(engine, query, 200)
     result = list(zip(prompts, urls))
-    return render_template("index.html", result=result)
+    return render_template("index.html", result=result, query=query)
 
 
 @app.route("/search", methods=["POST", "GET"])
