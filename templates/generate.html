@@ -8,6 +8,16 @@
             href="static/css/style_search.css"
             type="text/css"
         />
+        <link
+            rel="stylesheet"
+            href="static/css/style_index.css"
+            type="text/css"
+        />
+        <link
+            rel="stylesheet"
+            href="static/css/style_generate.css"
+            type="text/css"
+        />
     </head>
 
     <body>
@@ -20,12 +30,31 @@
             </div>
         </nav>
         <main>
-            <div>
-                <textarea
-                    class="textarea textarea-bordered"
-                    placeholder="Bio"
-                ></textarea>
-            </div>
+            <form
+                action="/generate_result"
+                method="POST"
+                id="img_generate_form"
+            >
+                <div id="query_textarea">
+                    <textarea
+                        class="textarea textarea-bordered"
+                        placeholder="{{query}}"
+                        value="{{query}}"
+                        name="query"
+                    ></textarea>
+                </div>
+                <div id="model_selector">
+                    <div class="label">
+                        <span class="label-text">Pick the model</span>
+                    </div>
+                    <select class="select select-bordered w-full max-w-xs">
+                        <option>Stable Diffusion</option>
+                        <option>Lora</option>
+                        <option>Midjourney</option>
+                        <option>Lexica</option>
+                    </select>
+                </div>
+            </form>
         </main>
     </body>
 </html>

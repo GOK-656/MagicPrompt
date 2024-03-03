@@ -1,6 +1,15 @@
-<img src="{{pic[0]}}">这里应该有一个图片，但是目前只写了读url资源，需要加入展示服务器直接传图片的功能</img>
-<img src="data:;base64,{{img_stream}}" alt="uploaded image" style="width: 200px; height: auto;"/ >
-<form action="/search" method="post" enctype="multipart/form-data"><input id="curr_promt" value="{{currentValue}}"><button type="submit">search submit</button></form>
-<form action="/generate" method="post" enctype="multipart/form-data"><input id="generate" value="{{currentValue}}"><button type="submit">generate submit</button></form>
-<form action="/search_change" method="post" enctype="multipart/form-data"><input id="willing_change"><button type="submit">change submit</button></form>
-
+<img src="data:;base64,{{img_stream}}" alt="uploaded image" style="width: 200px;
+height: auto;"/ >
+<form action="/search" method="post" enctype="multipart/form-data">
+    <input id="curr_promt" value="{{currentValue}}" /><button type="submit">
+        search submit
+    </button>
+</form>
+<form action="/generate" method="post" enctype="multipart/form-data">
+    <input id="generate" value="{{currentValue}}" /><button type="submit">
+        generate submit
+    </button>
+</form>
+<form action="/search_change" method="post" enctype="multipart/form-data">
+    <input id="willing_change" /><button type="submit">change submit</button>
+</form>

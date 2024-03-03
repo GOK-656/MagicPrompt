@@ -72,7 +72,7 @@ def home():
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
-    if request.method == "POST":
+    if request.method == "POST" or request.method == "GET":
         query = request.form.get("query")
         if not query:
             query = "A mountain in spring with white cloud"
@@ -177,6 +177,16 @@ def search_change():
         return render_template(
             "current_picture.html", currentValue=query, pic=result[0]
         )
+    return redirect(url_for("home"))
+
+
+@app.route("/generate", methods=["POST", "GET"])
+def generate():
+    query = request.form.get("query")
+    if not query:
+        query = "A mountain in spring with white cloud"
+    if request.method == "POST" or request.method == "GET":
+        return render_template("generate.html", query=query)
     return redirect(url_for("home"))
 
 

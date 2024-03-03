@@ -73,7 +73,17 @@
 
             gtag("config", "G-FNS66H6NJY");
         </script>
-        <script src="static/js/script.js"></script>
+        <script>
+            function imgError(img) {
+                console.log("Image error:", img.src);
+                const parentElement = img.parentElement;
+                if (parentElement) {
+                    console.log("parentElement:", parentElement);
+                    parentElement.remove();
+                    console.log("image removed");
+                }
+            }
+        </script>
 
         <link
             href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css"
