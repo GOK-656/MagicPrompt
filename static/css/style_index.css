@@ -15,6 +15,10 @@
     margin-top: 3%;
 }
 
+#introduce-header h1{
+    font-size: 28px;
+}
+
 .results-wrapper{
     position: relative;
     animation: moveRightToLeft 1000s linear infinite;
