@@ -116,7 +116,7 @@
     border-radius: 15px 15px 15px 15px;
 }
 
-main {
+grid {
     margin-top: 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
