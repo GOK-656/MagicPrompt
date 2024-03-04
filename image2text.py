@@ -19,6 +19,7 @@ def image2textFilename(filename):
 def image2textData(data):
     print(data)
     response = requests.post(API_URL, headers=headers, data=data)
+    print(response.json())
     return response.json()[0]["generated_text"]
 
 

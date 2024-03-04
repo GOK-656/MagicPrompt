@@ -150,15 +150,17 @@ def submit_a_picture():
         #     print(temp_file_path)
         #     img2url(open(temp_file_path, "rb"))
         img = Image.open(query)
-        save_path = "tmp/" + query.filename
+        # save_path = "tmp/" + query.filename
+        save_path = "tmp/" + "tmp." + query.filename.split(".")[-1]
+        print("save path: ", save_path)
         img.save(save_path)
         img_stream = ""
-        with open(save_path, "rb") as img_file:
-            img_stream = base64.b64encode(img_file.read()).decode("utf-8")
-
+        # with open(save_path, "rb") as img_file:
+        # img_stream = base64.b64encode(img_file.read()).decode("utf-8")
         # ans=getResult("Add an eyeglass above the eye")
         # print(ans)
         # print(ans[0])
+        img_stream = getResult("add a bird into the sky", save_path)
         return render_template(
             "current_picture.html", currentValue=text, pic="0", img_stream=img_stream
         )

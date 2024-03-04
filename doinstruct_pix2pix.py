@@ -20,7 +20,7 @@ import base64
 from io import BytesIO
 
 
-def getResult(inputPromt):
+def getResult(inputPromt, savePath):
     print("intoIt")
     print(inputPromt)
     # initialize Selenium WebDriver
@@ -37,8 +37,8 @@ def getResult(inputPromt):
     iframe = driver.find_element(By.TAG_NAME, "iframe")
     driver.switch_to.frame(iframe)
     file_input = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-    current_path = os.getcwd()
-    file_input.send_keys(os.path.join(current_path, "tmp/test.jpg"))
+    currentPath = os.getcwd()
+    file_input.send_keys(os.path.join(currentPath, savePath))
     textarea = driver.find_element(By.CSS_SELECTOR, "textarea[data-testid='textbox']")
     textarea.clear()
     textarea.send_keys(inputPromt)
@@ -64,9 +64,9 @@ def getResult(inputPromt):
 
     img_src = img_element.get_attribute("src")
     img_src = img_src.split(",")[1]
-    img_data = base64.b64decode(img_src)
-    img = Image.open(BytesIO(img_data))
-    img.save("tmp/output.jpg")
+    # img_data = base64.b64decode(img_src)
+    # img = Image.open(BytesIO(img_data))
+    # img.save("tmp/output.jpg")
 
     # output = replicate.run(
     #     "timothybrooks/instruct-pix2pix:30c1d0b916a6f8efce20493f5d61ee27491ab2a60437c13c588468b9810ec23f",
@@ -82,6 +82,7 @@ def getResult(inputPromt):
     # )
     # print(output)
     # return output
+    return img_src
 
 
 # getResult("add a bird to the sky")
