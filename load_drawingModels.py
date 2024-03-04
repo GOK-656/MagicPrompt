@@ -43,7 +43,7 @@ def lexica_image(inputPromt):
 
 def lora_image(inputPromt):
     API_URL = (
-        "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
+        "https://api-inference.huggingface.co/models/openskyml/lcm-lora-sdxl-turbo"
     )
 
     image_bytes = query(
