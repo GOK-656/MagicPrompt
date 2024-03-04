@@ -29,4 +29,4 @@ def diffusion_image(inputPromt):
 # # You can access the image with PIL.Image for example
 # import io
 # from PIL import Image
-print(diffusion_image("A big elephant"))
+# print(diffusion_image("A big elephant"))

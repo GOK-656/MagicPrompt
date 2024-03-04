@@ -84,4 +84,4 @@ def getResult(inputPromt):
     # return output
 
 
-getResult("add a bird to the sky")
+# getResult("add a bird to the sky")

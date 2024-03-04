@@ -17,4 +17,4 @@ def prompt_generator(input_text):
 
 # print(output)
 # print(output[0]["generated_text"])
-print(prompt_generator("A mountain in spring with white cloud"))
+# print(prompt_generator("A mountain in spring with white cloud"))
