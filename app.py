@@ -208,6 +208,7 @@ def generate():
         return render_template(
             "generate.html",
             query=query,
+            model=model,
             generated_text=generated_text,
             img_stream=img_stream,
         )

@@ -59,12 +59,26 @@
                         class="select select-bordered w-full max-w-xs"
                         name="model"
                     >
+                        {% if model == "stable_diffusion"%}
+                        <option value="stable_diffusion" selected>
+                            Stable Diffusion</option>
+                        {%else%}
                         <option value="stable_diffusion">
-                            Stable Diffusion
-                        </option>
-                        <option value="lora">Lora</option>
+                            Stable Diffusion</option>
+                        {%endif%}
+                        {% if model == "lora"%}
+                        <option value="lora" selected>Lora</option>{%else%}
+                        <option value="lora">Lora</option>{%endif%}
+                        {% if model == "midjourney"%}
+                        <option value="midjourney" selected>Midjourney</option>
+                        {%else%}
                         <option value="midjourney">Midjourney</option>
+                        {%endif%}
+                        {% if model == "lexica"%}
+                        <option value="lexica" selected>Lexica</option>
+                        {%else%}
                         <option value="lexica">Lexica</option>
+                        {%endif%}
                     </select>
                 </div>
                
