@@ -195,7 +195,15 @@ def generate():
             query = "A mountain in spring with white cloud"
         generated_text = prompt_generator(query)
         print(generated_text)
-        img_stream = diffusion_image(generated_text)
+        print("selected model", model)
+        if model == "stable_diffusion":
+            img_stream = diffusion_image(generated_text)
+        elif model == "lora":
+            img_stream = lora_image(generated_text)
+        elif model == "lexica":
+            img_stream = midjourney_image(generated_text)
+        elif model == "midjourney":
+            img_stream = lexica_image(generated_text)
         # print(img_stream)
         return render_template(
             "generate.html",
