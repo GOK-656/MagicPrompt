@@ -31,26 +31,26 @@
         </nav>
         <main>
             <form action="/generate" method="POST" id="img_generate_form">
+                <div id="both_text_wrapper">
+                <div class="label">
+                    <span class="label-text">Describe the scene</span>
+                </div>
                 <div id="query_textarea_div">
-                    <div class="label">
-                        <span class="label-text">Describe the scene</span>
-                    </div>
                     <textarea
                         placeholder="{{query}}"
                         name="query"
                         value="{{query}}"
                     >{% if generated_text%}{{query}}{% endif %}</textarea>
-                </div>
-                <div id="generated_text_display">
-                <div class="label">
-                    <span class="label-text">Expanded Prompt</span>
-                </div>
-                    <div id="generated_text_wrapper">
-                    {% if generated_text%}
-                        <p>{{generated_text}}</p>
-                    {%endif%}
+                    <div id="generated_text_display">
+                        <div id="generated_text_wrapper">
+                        {% if generated_text%}
+                            <p>{{generated_text}}</p>
+                        {%endif%}
+                        </div>
                     </div>
                 </div>
+                </div>
+               
                 <div id="model_selector">
                     <div class="label">
                         <span class="label-text">Pick the model</span>
@@ -72,7 +72,17 @@
                     Generate
                 </button>
             </form>
-            
+            <div id="img_label_wrapper">
+                <div class="label">
+                    <span class="label-text">Generated Image</span>
+                </div>
+            <div id="img_wrapper">
+                
+                {% if img_stream %}
+                <img src="data:;base64,{{img_stream}}" alt="Generated Image"/>
+                {% endif %}
+            </div>
+        </div>
         </main>
         <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>

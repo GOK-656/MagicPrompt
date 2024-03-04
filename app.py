@@ -7,6 +7,7 @@ from image2text import *
 from doinstruct_pix2pix import *
 import tempfile
 from prompt_generator import *
+from load_drawingModels import *
 
 app = Flask(__name__)
 app.config["TEMP_FOLDER"] = "tmp/"
@@ -191,8 +192,13 @@ def generate():
             query = "A mountain in spring with white cloud"
         generated_text = prompt_generator(query)
         print(generated_text)
+        img_stream = diffusion_image(generated_text)
+        # print(img_stream)
         return render_template(
-            "generate.html", query=query, generated_text=generated_text
+            "generate.html",
+            query=query,
+            generated_text=generated_text,
+            img_stream=img_stream,
         )
     elif request.method == "GET":
         query = "A mountain in spring with white cloud"
