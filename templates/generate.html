@@ -30,31 +30,53 @@
             </div>
         </nav>
         <main>
-            <form
-                action="/generate_result"
-                method="POST"
-                id="img_generate_form"
-            >
-                <div id="query_textarea">
+            <form action="/generate" method="POST" id="img_generate_form">
+                <div id="query_textarea_div">
+                    <div class="label">
+                        <span class="label-text">Describe the scene</span>
+                    </div>
                     <textarea
-                        class="textarea textarea-bordered"
                         placeholder="{{query}}"
-                        value="{{query}}"
                         name="query"
-                    ></textarea>
+                        value="{{query}}"
+                    >{% if generated_text%}{{query}}{% endif %}</textarea>
+                </div>
+                <div id="generated_text_display">
+                <div class="label">
+                    <span class="label-text">Expanded Prompt</span>
+                </div>
+                    <div id="generated_text_wrapper">
+                    {% if generated_text%}
+                        <p>{{generated_text}}</p>
+                    {%endif%}
+                    </div>
                 </div>
                 <div id="model_selector">
                     <div class="label">
                         <span class="label-text">Pick the model</span>
                     </div>
-                    <select class="select select-bordered w-full max-w-xs">
-                        <option>Stable Diffusion</option>
-                        <option>Lora</option>
-                        <option>Midjourney</option>
-                        <option>Lexica</option>
+                    <select
+                        class="select select-bordered w-full max-w-xs"
+                        name="model"
+                    >
+                        <option name="model" value="stable_diffusion">
+                            Stable Diffusion
+                        </option>
+                        <option value="lora">Lora</option>
+                        <option value="midjourney">Midjourney</option>
+                        <option value="lexica">Lexica</option>
                     </select>
                 </div>
+               
+                <button class="btn btn-neutral" id="generate_button" onclick="button2loading(this)">
+                    Generate
+                </button>
             </form>
+            
         </main>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+        <script src="static/js/script.js"></script>
     </body>
 </html>

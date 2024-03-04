@@ -95,3 +95,15 @@ function submit_index_form(action) {
     document.getElementById("indexForm").action = action;
     document.getElementById("indexForm").submit();
 }
+
+function button2loading(button) {
+    const loadingSpan = document.createElement("span");
+    loadingSpan.classList.add("loading", "loading-spinner");
+    button.innerHTML = "";
+    button.appendChild(loadingSpan);
+    button.disabled = true;
+    var form = document.getElementById("img_generate_form");
+    setTimeout(() => {
+        form.submit();
+    }, 1000);
+}

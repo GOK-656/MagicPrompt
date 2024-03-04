@@ -6,6 +6,7 @@ import pandas as pd
 from image2text import *
 from doinstruct_pix2pix import *
 import tempfile
+from prompt_generator import *
 
 app = Flask(__name__)
 app.config["TEMP_FOLDER"] = "tmp/"
@@ -182,11 +183,21 @@ def search_change():
 
 @app.route("/generate", methods=["POST", "GET"])
 def generate():
-    query = request.form.get("query")
-    if not query:
+    if request.method == "POST":
+        print(request.form)
+        query = request.form.get("query")
+        model = request.form.get("model")
+        if not query:
+            query = "A mountain in spring with white cloud"
+        generated_text = prompt_generator(query)
+        print(generated_text)
+        return render_template(
+            "generate.html", query=query, generated_text=generated_text
+        )
+    elif request.method == "GET":
         query = "A mountain in spring with white cloud"
-    if request.method == "POST" or request.method == "GET":
         return render_template("generate.html", query=query)
+
     return redirect(url_for("home"))
 
 
