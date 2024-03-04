@@ -6,6 +6,7 @@ def prompt_generator(input_text):
     headers = {"Authorization": "Bearer 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"}
     input = {"inputs": input_text}
     response = requests.post(API_URL, headers=headers, json=input)
+    print(response.json())
     return response.json()[0]["generated_text"]
 
 
