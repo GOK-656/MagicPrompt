@@ -107,3 +107,15 @@ function button2loading(button) {
         form.submit();
     }, 1000);
 }
+
+function button2pix2pix(button) {
+    const loadingSpan = document.createElement("span");
+    loadingSpan.classList.add("loading", "loading-spinner");
+    button.innerHTML = "";
+    button.appendChild(loadingSpan);
+    button.disabled = true;
+    var form = document.getElementById("pix2pix_form");
+    setTimeout(() => {
+        form.submit();
+    }, 1000);
+}

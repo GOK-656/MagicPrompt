@@ -1,3 +1,5 @@
 __pycache__/
 .history/
 .DS_Store
+tmp/*
+temp.jpg

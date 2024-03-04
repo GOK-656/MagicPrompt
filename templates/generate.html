@@ -1,113 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% include "base_head.html"%}
+{% include "base_head.html"%}
 
-    <head>
-        <link
-            rel="stylesheet"
-            href="static/css/style_search.css"
-            type="text/css"
-        />
-        <link
-            rel="stylesheet"
-            href="static/css/style_index.css"
-            type="text/css"
-        />
-        <link
-            rel="stylesheet"
-            href="static/css/style_generate.css"
-            type="text/css"
-        />
-    </head>
+<head>
+    <link rel="stylesheet" href="static/css/style_search.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/style_index.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/style_generate.css" type="text/css" />
+</head>
 
-    <body>
-        <nav>
-            <div id="nav-title"><a href="/">Magic Prompt</a></div>
-            <div id="nav-link">
-                <a href="/">Home</a>
-                <a href="/search">Search</a>
-                <a href="/generate" class="page_this">Generate</a>
-            </div>
-        </nav>
-        <main>
-            <grid>
-                <form action="/generate" method="POST" id="img_generate_form">
-                    <div id="both_text_wrapper">
+<body>
+    <nav>
+        <div id="nav-title"><a href="/">Magic Prompt</a></div>
+        <div id="nav-link">
+            <a href="/">Home</a>
+            <a href="/search">Search</a>
+            <a href="/generate" class="page_this">Generate</a>
+        </div>
+    </nav>
+    <main>
+        <grid>
+            <form action="/generate" method="POST" id="img_generate_form">
+                <div id="both_text_wrapper">
                     <div class="label">
                         <span class="label-text">Describe the scene</span>
                     </div>
                     <div id="query_textarea_div">
-                        <textarea
-                            placeholder="{{query}}"
-                            name="query"
-                            value="{{query}}"
-                        >{% if generated_text%}{{query}}{% endif %}</textarea>
+                        <textarea placeholder="{{query}}" name="query"
+                            value="{{query}}">{% if generated_text%}{{query}}{% endif %}</textarea>
                         <div id="generated_text_display">
                             <div id="generated_text_wrapper">
-                            {% if generated_text%}
+                                {% if generated_text%}
                                 <p>{{generated_text}}</p>
-                            {%endif%}
+                                {%endif%}
                             </div>
                         </div>
                     </div>
-                    </div>
-                
-                    <div id="model_selector">
-                        <div class="label">
-                            <span class="label-text">Pick the model</span>
-                        </div>
-                        <select
-                            class="select select-bordered w-full max-w-xs"
-                            name="model"
-                        >
-                            {% if model == "stable_diffusion"%}
-                            <option value="stable_diffusion" selected>
-                                Stable Diffusion</option>
-                            {%else%}
-                            <option value="stable_diffusion">
-                                Stable Diffusion</option>
-                            {%endif%}
-                            {% if model == "lora"%}
-                            <option value="lora" selected>Lora</option>{%else%}
-                            <option value="lora">Lora</option>{%endif%}
-                            {% if model == "midjourney"%}
-                            <option value="midjourney" selected>Midjourney</option>
-                            {%else%}
-                            <option value="midjourney">Midjourney</option>
-                            {%endif%}
-                            {% if model == "lexica"%}
-                            <option value="lexica" selected>Lexica</option>
-                            {%else%}
-                            <option value="lexica">Lexica</option>
-                            {%endif%}
-                        </select>
-                    </div>
-                
-                    <button class="btn btn-neutral" id="generate_button" onclick="button2loading(this)">
-                        Generate
-                    </button>
-                </form>
-                <div id="img_label_wrapper">
+                </div>
+
+                <div id="model_selector">
                     <div class="label">
-                        <span class="label-text">Generated image</span>
+                        <span class="label-text">Pick the model</span>
                     </div>
+                    <select class="select select-bordered w-full max-w-xs" name="model">
+                        {% if model == "stable_diffusion"%}
+                        <option value="stable_diffusion" selected>
+                            Stable Diffusion</option>
+                        {%else%}
+                        <option value="stable_diffusion">
+                            Stable Diffusion</option>
+                        {%endif%}
+                        {% if model == "lora"%}
+                        <option value="lora" selected>Lora</option>{%else%}
+                        <option value="lora">Lora</option>{%endif%}
+                        {% if model == "midjourney"%}
+                        <option value="midjourney" selected>Midjourney</option>
+                        {%else%}
+                        <option value="midjourney">Midjourney</option>
+                        {%endif%}
+                        {% if model == "lexica"%}
+                        <option value="lexica" selected>Lexica</option>
+                        {%else%}
+                        <option value="lexica">Lexica</option>
+                        {%endif%}
+                    </select>
+                </div>
+
+                <button class="btn btn-neutral" id="generate_button" onclick="button2loading(this)">
+                    Generate
+                </button>
+            </form>
+            <div id="img_label_wrapper">
+                <div class="label">
+                    <span class="label-text">Generated image</span>
+                </div>
                 <div id="img_wrapper">
                     {% if not flag %}
-                        <div role="alert" class="alert alert-error">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>Error! Server too busy. Please try another model.</span>
-                        </div>
+                    <div role="alert" class="alert alert-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Error! Server too busy. Please try another model.</span>
+                    </div>
                     {% endif %}
                     {% if img_stream %}
-                    <img src="data:;base64,{{img_stream}}" alt="Generated Image"/>
+                    <img src="data:;base64,{{img_stream}}" alt="Generated Image" />
                     {% endif %}
                 </div>
             </div>
+
+            <form action="/pix2pix" method="POST" id="pix2pix_form">
+                <input type="hidden" name="query" value="{{ query }}">
+                <input type="hidden" name="model" value="{{ model }}">
+                <input type="hidden" name="generated_text" value="{{ generated_text }}">
+                <input type="hidden" name="img_stream" value="{{ img_stream }}">
+                <input type="hidden" name="flag" value="{{ flag }}">
+                <textarea id="pix2pix_textarea" name="inputprompt"></textarea>
+                <input type="number" name="steps" placeholder="10">
+                <input type="number" name="text_cfg" placeholder="7.5">
+                <input type="number" name="image_cfg" placeholder="1.5">
+                <button class="btn btn-neutral" id="pix2pix_button" onclick="button2pix2pix(this)">
+                    Pix2Pix
+                </button>
+            </form>
+            {% if modified_img %}
+                <img src="data:;base64,{{modified_img}}" alt="Modified Image" />
+            {% endif %}
+            <form action="/reset" method="POST" id="reset_form">
+                <button class="btn btn-neutral" id="reset_button" onclick="button2reset(this)">
+                    Reset
+                </button>
+            </form>
+            
         </grid>
-        </main>
-        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
-        <script src="static/js/script.js"></script>
-    </body>
+    </main>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+
 </html>
