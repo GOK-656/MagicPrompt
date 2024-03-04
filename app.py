@@ -196,25 +196,28 @@ def generate():
         generated_text = prompt_generator(query)
         print(generated_text)
         print("selected model", model)
+        flag = True
         if model == "stable_diffusion":
-            img_stream = diffusion_image(generated_text)
+            img_stream, flag = diffusion_image(generated_text)
         elif model == "lora":
-            img_stream = lora_image(generated_text)
+            img_stream, flag = lora_image(generated_text)
         elif model == "lexica":
-            img_stream = midjourney_image(generated_text)
+            img_stream, flag = midjourney_image(generated_text)
         elif model == "midjourney":
-            img_stream = lexica_image(generated_text)
+            img_stream, flag = lexica_image(generated_text)
         # print(img_stream)
+        print(flag)
         return render_template(
             "generate.html",
             query=query,
             model=model,
             generated_text=generated_text,
             img_stream=img_stream,
+            flag=flag,
         )
     elif request.method == "GET":
         query = "A mountain in spring with white cloud"
-        return render_template("generate.html", query=query)
+        return render_template("generate.html", query=query, flag=True)
 
     return redirect(url_for("home"))
 
