@@ -274,7 +274,9 @@ def generate():
         )
     elif request.method == "GET":
         query = "A mountain in spring with white cloud"
-        return render_template("generate.html", query=query, flag=True)
+        return render_template(
+            "generate.html", query=query, flag=True, flag_pix2pix=True
+        )
 
     return redirect(url_for("home"))
 
