@@ -213,10 +213,14 @@ def pix2pix():
         if not img_cfg:
             img_cfg = 1.5
         print(steps, text_cfg, img_cfg)
+        if not inputprompt:
+            inputprompt = "add a bird to the middle"
+
         modified_img, flag_pix2pix = get_pix2pix_result(
             inputprompt, os.path.join("tmp", "temp.jpg"), steps, text_cfg, img_cfg
         )
 
+        # flag_pix2pix = False
         return render_template(
             "generate.html",
             query=query,

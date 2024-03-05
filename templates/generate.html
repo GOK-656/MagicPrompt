@@ -25,10 +25,21 @@
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span>Error! Server too busy. Please try another model.</span>
+                        <span>Oops! Server too busy. Please try another model.</span>
                     </div>
                     </div>
-                    {% endif %}
+        {% endif %}
+        {% if not flag_pix2pix %}
+                    <div class="alert-wrapper">
+                    <div role="alert" class="alert alert-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>Oops! Server too busy. Please try later.</span>
+                    </div>
+                    </div>
+        {% endif %}
         <grid>
             <form action="/generate" method="POST" id="img_generate_form">
                 <div id="both_text_wrapper">
@@ -92,8 +103,6 @@
             </div>
 
             
-            
-            
             <div id="pix2pix-label-wrapper">
                 <div class="label">
                     <span class="label-text"></span>
@@ -107,7 +116,7 @@
                     <input type="hidden" name="flag" value="{{ flag }}">
                     <div class="label-instruct-group">
                         <span class="label-text"> Edit instruction</span>
-                        <input type="text" placeholder="Add a bird in the middle"  name="inputprompt" id="pix2pix_textarea"/>
+                        <input type="text" placeholder="Turn into a cartoon style"  name="inputprompt" id="pix2pix_textarea"/>
                     </div>
                     <div class="label-number-group steps">
                         <span class="label-text">Steps</span>
