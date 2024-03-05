@@ -207,7 +207,10 @@ def pix2pix():
         steps = request.form.get("steps")
         text_cfg = request.form.get("text_cfg")
         img_cfg = request.form.get("image_cfg")
-        file_name = request.form.get("file_name")
+        img_bytes = base64.b64decode(img_stream)
+        file_name = str(uuid.uuid4()) + ".jpg"
+        img = Image.open(io.BytesIO(img_bytes))
+        img.save(os.path.join("tmp", file_name))
 
         if not steps:
             steps = 10
@@ -234,7 +237,7 @@ def pix2pix():
             flag=flag,
             modified_img=modified_img,
             flag_pix2pix=flag_pix2pix,
-            file_name=file_name,
+            # file_name=file_name,
         )
 
 
@@ -265,9 +268,9 @@ def generate():
         print(flag)
         img_stream = ""
         if img_bytes:
-            file_name = str(uuid.uuid4()) + ".jpg"
-            image = Image.open(io.BytesIO(img_bytes))
-            image.save(os.path.join("tmp", file_name))
+            # file_name = str(uuid.uuid4()) + ".jpg"
+            # image = Image.open(io.BytesIO(img_bytes))
+            # image.save(os.path.join("tmp", file_name))
             img_stream = base64.b64encode(img_bytes).decode("utf-8")
         return render_template(
             "generate.html",
@@ -277,7 +280,7 @@ def generate():
             img_stream=img_stream,
             flag=flag,
             flag_pix2pix=True,
-            file_name=file_name,
+            # file_name=file_name,
         )
     elif request.method == "GET":
         query = "A mountain in spring with white cloud"
