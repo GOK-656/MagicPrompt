@@ -822,7 +822,7 @@
                 </p>
                 {% endif %} {% for value in result %}
                 <div class="single-result-card">
-                    <img src="{{ value[1] }}" alt="Image" />
+                    <img src="{{ value[1] }}" alt="Image" onerror="imgError(this);"/>
                     <div class="prompt-text-wrapper">
                         <p class="prompt-text-p">{{ value[0] }}</p>
                     </div>

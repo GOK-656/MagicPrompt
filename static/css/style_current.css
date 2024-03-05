@@ -41,15 +41,28 @@
     line-height: 1.5;
 }
 
-/* .card-body p {
-    color: #2563eb;
-    margin-top: 10%;
-} */
+.card-body {
+    /* color: #2563eb; */
+    /* margin-top: 10%; */
+    width: 60%;
+}
 
 #img2text-wrapper{
     text-align: center;
+    color: #2563eb;
+    font-style: italic; 
+    font-size: 1.5em;
+    text-decoration: underline;
+    text-decoration-color: yellow;
+    white-space: normal;
 }
 
 .card-body>div:first-of-type{
     margin: auto 0;
+}
+
+.italic-yellow-underline {
+    font-style: italic; 
+    text-decoration: underline;
+    text-decoration-color: yellow;
 }
