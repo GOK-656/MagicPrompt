@@ -80,71 +80,70 @@
                     Generate
                 </button>
             </form>
-            <div id="img_label_wrapper">
+            <div class="img_label_wrapper">
                 <div class="label">
                     <span class="label-text">Generated image</span>
                 </div>
                 <div class="img_wrapper">
-                    
                     {% if img_stream %}
                     <img src="data:;base64,{{img_stream}}" alt="Generated Image" />
                     {% endif %}
                 </div>
             </div>
 
-            <form action="/pix2pix" method="POST" id="pix2pix_form">
-                <input type="hidden" name="query" value="{{ query }}">
-                <input type="hidden" name="model" value="{{ model }}">
-                <input type="hidden" name="generated_text" value="{{ generated_text }}">
-                <input type="hidden" name="img_stream" value="{{ img_stream }}">
-                <input type="hidden" name="flag" value="{{ flag }}">
-                <textarea id="pix2pix_textarea" name="inputprompt"></textarea>
-                <input type="number" name="steps" placeholder="10">
-                <input type="number" name="text_cfg" placeholder="7.5">
-                <input type="number" name="image_cfg" placeholder="1.5">
+            
+            
+            
+            <div id="pix2pix-label-wrapper">
+                <div class="label">
+                    <span class="label-text"></span>
+                </div>
+            <div id="pix2pix-wrapper">
+                <form action="/pix2pix" method="POST" id="pix2pix_form">
+                    <input type="hidden" name="query" value="{{ query }}">
+                    <input type="hidden" name="model" value="{{ model }}">
+                    <input type="hidden" name="generated_text" value="{{ generated_text }}">
+                    <input type="hidden" name="img_stream" value="{{ img_stream }}">
+                    <input type="hidden" name="flag" value="{{ flag }}">
+                    <div class="label-instruct-group">
+                        <span class="label-text"> Edit instruction</span>
+                        <input type="text" placeholder="Type here"  name="inputprompt" id="pix2pix_textarea"/>
+                    </div>
+                    <div class="label-number-group steps">
+                        <span class="label-text">Steps</span>
+                        <input type="number" name="steps" placeholder="10" min="0">
+                    </div>
+
+                    <div class="label-number-group text-cfg">
+                        <span class="label-text">Text CFG</span>
+                        <input type="number" name="text_cfg" placeholder="7.5" min="0">
+                    </div>
+                    
+                    <div class="label-number-group img-cfg">
+                        <span class="label-text">Img CFG</span>
+                        <input type="number" name="image_cfg" placeholder="1.5" min="0">
+                    </div>
+                </form>
+                <form action="/reset" method="POST" id="reset_form">
+                </form>
+                <button class="btn btn-outline" id="reset_button" onclick="button2reset(this)">
+                    Reset
+                </button>
                 <button class="btn btn-neutral" id="pix2pix_button" onclick="button2pix2pix(this)">
                     Pix2Pix
                 </button>
-            </form>
-            {% if modified_img %}
+            </div>
+            </div>
+            <div class="img_label_wrapper" id="modified-img-g-wrapper">
+                <div class="label">
+                    <span class="label-text">Pix2Pix modified image</span>
+                </div>
+                <div class="img_wrapper">
+                    {% if modified_img %}
                 <img src="data:;base64,{{modified_img}}" alt="Modified Image" />
             {% endif %}
-            <form action="/reset" method="POST" id="reset_form">
-                <button class="btn btn-neutral" id="reset_button" onclick="button2reset(this)">
-                    Reset
-                </button>
-            </form>
-            <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-                <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
-            
-                <form>
-                    <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-                        <div>
-                            <label class="text-gray-700 dark:text-gray-200" for="username">Username</label>
-                            <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                        </div>
-            
-                        <div>
-                            <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email Address</label>
-                            <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                        </div>
-            
-                        <div>
-                            <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
-                            <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                        </div>
-            
-                        <div>
-                            <label class="text-gray-700 dark:text-gray-200" for="passwordConfirmation">Password Confirmation</label>
-                            <input id="passwordConfirmation" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                        </div>
-                    </div>
-            
-                    <div class="flex justify-end mt-6">
-                        <button class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
-                    </div>
-                </form>
-            </section>
+                </div>
+            </div>
         </grid>
     </main>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>

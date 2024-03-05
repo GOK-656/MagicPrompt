@@ -93,7 +93,7 @@
     /* justify-self: end; */
 }
 
-#img_label_wrapper{
+.img_label_wrapper{
     grid-column: 3 / span 1;
     grid-row: 1 / span 1;
     width: 100%;
@@ -123,7 +123,7 @@ grid {
     margin-top: 10%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 30vh);
+    grid-template-rows: 30vh 10vh 30vh 10vh;
 }
 
 .alert-wrapper {
@@ -150,4 +150,123 @@ grid {
         top: -100px; 
         opacity: 0; 
     }
+}
+
+#pix2pix-label-wrapper{
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+    width: 95%;
+}
+
+#pix2pix-wrapper {
+    /* grid-column: 1 / span 2;
+    grid-row: 3 /span 1; */
+    width: 100%;
+    height: 95%;
+    /* border-radius: 15px; */
+    /* background-color: white; */
+    /* box-shadow: 2px 4px 12px rgba(0 0 0/0.08); */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    grid-row-gap: 15px;
+}
+
+#pix2pix-wrapper form{
+    width: 100%;
+    height: 100%;
+}
+
+#reset_button{
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    width: 80%;
+}
+
+#pix2pix_button {
+    grid-column: 3 / span 1;
+    grid-row: 3 / span 1;
+    width: 80%;
+}
+
+#pix2pix_form{
+    grid-column: 1 / -1;
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.label-number-group{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-left: 5px;
+}
+
+.label-number-group.steps{
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.label-number-group.text-cfg{
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.label-number-group.img-cfg{
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.label-number-group input[type="number"]{
+    width: 80%;
+    height: 60%;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 2px 4px 12px rgba(0 0 0/0.08);
+    margin-top: 10px;
+    padding: 5px 15px 5px 15px;
+}
+
+/* .label-number-group input[type="number"]:focus{
+    outline: 2px solid grey;
+} */
+
+#pix2pix_textarea{
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 2px 4px 12px rgba(0 0 0/0.08);
+    margin-top: 10px;
+    padding: 5px 15px 5px 15px; 
+}
+
+.label-instruct-group {
+    grid-column: 1 / -1;
+    grid-row: 1 / span 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.label-instruct-group input{
+    width: 94%;
+    height: 60%;
+    border-radius: 15px 15px 15px 15px;
+}
+
+/* .label-instruct-group input:focus{
+    outline: 2px solid grey;
+} */
+
+#modified-img-g-wrapper{
+    grid-column: 3 / span 1;
+    grid-row: 3 / span 1;
+}
+
+
+#pix2pix_form input:focus{
+    outline: none;
 }
