@@ -85,6 +85,30 @@ function button2loading(button) {
     }, 1000);
 }
 
+function button2pix2pix(button) {
+    const loadingSpan = document.createElement("span");
+    loadingSpan.classList.add("loading", "loading-spinner");
+    button.innerHTML = "";
+    button.appendChild(loadingSpan);
+    button.disabled = true;
+    var form = document.getElementById("pix2pix_form");
+    setTimeout(() => {
+        form.submit();
+    }, 1000);
+}
+
+function button2reset(button) {
+    const loadingSpan = document.createElement("span");
+    loadingSpan.classList.add("loading", "loading-spinner");
+    button.innerHTML = "";
+    button.appendChild(loadingSpan);
+    button.disabled = true;
+    var form = document.getElementById("reset_form");
+    setTimeout(() => {
+        form.submit();
+    }, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const searchIcon = document.querySelector("#img-icon");
     const overlay = document.querySelector(".overlay");

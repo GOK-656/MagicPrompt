@@ -26,10 +26,10 @@ def diffusion_image(inputPromt):
     )
     if image_bytes is None:
         return None, False
-    image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
     # image = Image.open(io.BytesIO(image_bytes))
     # image.save("diffusion_image.jpeg")
-    return image_base64, True
+    return image_bytes, True
 
 
 def lexica_image(inputPromt):
@@ -43,10 +43,10 @@ def lexica_image(inputPromt):
     )
     if image_bytes is None:
         return None, False
-    image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
     # image = Image.open(io.BytesIO(image_bytes))
     # image.save("diffusion_image.jpeg")
-    return image_base64, True
+    return image_bytes, True
 
 
 def lora_image(inputPromt):
@@ -60,10 +60,10 @@ def lora_image(inputPromt):
     )
     if image_bytes is None:
         return None, False
-    image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
     # image = Image.open(io.BytesIO(image_bytes))
     # image.save("diffusion_image.jpeg")
-    return image_base64, True
+    return image_bytes, True
 
 
 def midjourney_image(inputPromt):
@@ -75,10 +75,10 @@ def midjourney_image(inputPromt):
     )
     if image_bytes is None:
         return None, False
-    image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
     # image = Image.open(io.BytesIO(image_bytes))
     # image.save("diffusion_image.jpeg")
-    return image_base64, True
+    return image_bytes, True
 
 
 # # You can access the image with PIL.Image for example
