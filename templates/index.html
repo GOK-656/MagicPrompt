@@ -57,24 +57,23 @@
                                     id="img-icon"
                                 />
                             </div>
-                            
+
                             <button
                                 class="btn btn-neutral"
                                 onclick="submit_index_form('/search')"
                             >
-                            
-                            Search
+                                Search
                             </button>
                             <button
                                 class="btn btn-outline"
                                 onclick="submit_index_form('/generate')"
                             >
-                            <img
-                            src="static/src/feather-solid.svg"
-                            alt="search icon"
-                            width="15"
-                            height="15"
-                            />
+                                <img
+                                    src="static/src/feather-solid.svg"
+                                    alt="search icon"
+                                    width="15"
+                                    height="15"
+                                />
                                 Generate
                             </button>
                         </div>
@@ -82,29 +81,46 @@
                     <div class="overlay">
                         <div id="img-input-wrapper">
                             <button class="btn btn-ghost btn-circle">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                              </button>
-                            <div id="img-input-wrapper-group">
-                            <div>
-                                Search any image with Magic Prompt
-                            </div>
-                            <form
-                                id="imgForm"
-                                action="/submit_a_picture"
-                                method="post"
-                                enctype="multipart/form-data">
-                                    <div id="img-input-group">
-                                    <input
-                                        id="img-input"
-                                        type="file"
-                                        class="file-input file-input-bordered w-full max-w-xs"
-                                        name="img"
-                                        accept="image/jpeg, image/png, image/bmp, image/tiff, image/webp, image/jpg"
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"
                                     />
-                                    <button class="btn btn-outline" onclick="submit_img_form('/submit_a_picture', this)">Go!</button>
+                                </svg>
+                            </button>
+                            <div id="img-input-wrapper-group">
+                                <div>Search any image with Magic Prompt</div>
+                                <form
+                                    id="imgForm"
+                                    action="/submit_a_picture"
+                                    method="post"
+                                    enctype="multipart/form-data"
+                                >
+                                    <div id="img-input-group">
+                                        <input
+                                            id="img-input"
+                                            type="file"
+                                            class="file-input file-input-bordered w-full max-w-xs"
+                                            name="img"
+                                            accept="image/jpeg, image/png, image/bmp, image/tiff, image/webp, image/jpg"
+                                        />
+                                        <button
+                                            class="btn btn-outline"
+                                            onclick="submit_img_form('/submit_a_picture', this)"
+                                        >
+                                            Go!
+                                        </button>
                                     </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +134,7 @@
                         alt="Image"
                         onerror="imgError(this);"
                     />
-                    <div class="prompt-text-wrapper">   
+                    <div class="prompt-text-wrapper">
                         <p class="prompt-text-p">{{ value[0] }}</p>
                     </div>
                     <form action="/search" method="POST">

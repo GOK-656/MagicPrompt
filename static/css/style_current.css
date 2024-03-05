@@ -1,0 +1,55 @@
+#img-choice-card{
+    width: 100vh;
+    margin: 0 auto;
+    margin-top: 20vh;
+    border: none;
+    height: 50vh;
+}
+
+#img-choice-card figure{
+    width: 40%;
+}
+
+#img-choice-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#card-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: end;
+    /* margin-top: 30%; */
+}
+
+#card-actions form{
+    width: 100%;
+}
+
+#card-actions button{
+    width: 100%;
+    margin-top: 5%;
+    font-size: 1.2em;
+}
+
+.card-title{
+    font-size: 2rem;    
+    margin-bottom: 10%;
+    line-height: 1.5;
+}
+
+/* .card-body p {
+    color: #2563eb;
+    margin-top: 10%;
+} */
+
+#img2text-wrapper{
+    text-align: center;
+}
+
+.card-body>div:first-of-type{
+    margin: auto 0;
+}

@@ -52,6 +52,7 @@
 
 #input-wrapper-filter button{
     margin-right: 2%;
+    font-size: 1em;
 }
 
 #input-wrapper-filter button:last-of-type{

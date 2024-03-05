@@ -79,7 +79,7 @@ function button2loading(button) {
     button.innerHTML = "";
     button.appendChild(loadingSpan);
     button.disabled = true;
-    var form = document.getElementById("img_generate_form");
+    var form = button.closest("form");
     setTimeout(() => {
         form.submit();
     }, 1000);

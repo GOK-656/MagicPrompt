@@ -9,6 +9,7 @@ body {
     /* position: relative; */
 }
 
+
 nav {
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: saturate(180%) blur(20px);

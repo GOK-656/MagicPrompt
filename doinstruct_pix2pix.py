@@ -25,6 +25,7 @@ def get_pix2pix_result(inputPromt, savePath, steps=10, text_cfg=7.5, img_cfg=1.5
     # initialize Selenium WebDriver
     url = "https://huggingface.co/spaces/timbrooks/instruct-pix2pix"
     options = Options()
+    options.add_argument("-headless")
     driver = webdriver.Firefox(options=options)
     script = """
     Object.defineProperty(navigator, 'webdriver', {
