@@ -100,10 +100,10 @@
     background-color: white;
     z-index: 999;
     position: fixed;
-    left: 30%;
+    left: 20%;
     top: 30%;
-    width: 40%;
-    height: 30%;
+    width: 60%;
+    height: 40%;
     border-radius: 30px;
     box-shadow: 2px 4px 12px rgba(0 0 0/0.08);
     text-align: center;
@@ -130,17 +130,19 @@
     font-family: "DM Serif Display", Silkscreen, "Special Elite", "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     font-size: 1.5em;
-    margin-bottom: 10%;
+    margin-bottom: 2%;
 }
 
 #img-input-group{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
 }
 
 #img-input-group > button{
-    margin-left: 3%;
+    margin-top: 3%;
+    width: 30%;
 }
 
 #img-input-wrapper > button{
