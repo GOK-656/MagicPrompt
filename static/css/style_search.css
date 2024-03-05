@@ -9,6 +9,7 @@ body {
     /* position: relative; */
 }
 
+
 nav {
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: saturate(180%) blur(20px);
@@ -20,6 +21,31 @@ nav {
     z-index: 100;
     padding: 15px 0px;
     border-bottom: rgb(222, 222, 222) 1px solid;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#nav-link{
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+#nav-link a{
+    color: rgba(0,0,0,.87);
+    font-weight: 600;
+    font-family: "SF Pro Text", "SF Pro Display";
+    margin: 0 10px;
+}
+
+#nav-link a:hover{
+   color: #565564 
+}
+
+#nav-link .page_this{
+    text-decoration: underline;
+    text-underline-offset: 3px; 
 }
 
 main{
@@ -31,6 +57,7 @@ main{
     font-size: 21px;
     margin-left: 50px;
     font-family: Silkscreen, "Special Elite", "SF Pro Display", "SF Pro Icons","Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline;
 }
 
 #nav-title a{
@@ -111,7 +138,7 @@ h1{
     /* border-radius: 30px; */
 }
 
-#search-header input{
+#search-input{
     width: 100%;
     height: 50px;
     border: none;

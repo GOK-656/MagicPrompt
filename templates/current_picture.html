@@ -1,5 +1,95 @@
-<img src="{{pic[0]}}">这里应该有一个图片，但是目前只写了读url资源，需要加入展示服务器直接传图片的功能</img>
-<form action="/search" method="post" enctype="multipart/form-data"><input id="curr_promt" value="{{currentValue}}"><button type="submit">search submit</button></form>
-<form action="/generate" method="post" enctype="multipart/form-data"><input id="generate" value="{{currentValue}}"><button type="submit">generate submit</button></form>
-<form action="/search_change" method="post" enctype="multipart/form-data"><input id="willing_change"><button type="submit">change submit</button></form>
+<!DOCTYPE html>
+<html lang="en">
+    {% include "base_head.html"%}
+    <head>
+        <link
+            rel="stylesheet"
+            href="static/css/style_search.css"
+            type="text/css"
+        />
+        <link
+            rel="stylesheet"
+            href="static/css/style_index.css"
+            type="text/css"
+        />
+        <link
+            rel="stylesheet"
+            href="static/css/style_generate.css"
+            type="text/css"
+        />
+        <link
+            rel="stylesheet"
+            href="static/css/style_current.css"
+            type="text/css"
+        />
+    </head>
+    <body>
+        <nav>
+            <div id="nav-title"><a href="/">Magic Prompt</a></div>
+            <div id="nav-link">
+                <a href="/" class="page_this">Home</a>
+                <a href="/search">Search</a>
+                <a href="/generate">Generate</a>
+            </div>
+        </nav>
+        <main>
+            <div
+                class="card lg:card-side bg-base-100 shadow-xl"
+                id="img-choice-card"
+            >
+                <figure>
+                    <img
+                        src="data:;base64,{{img_stream}}"
+                        alt="uploaded image"
+                    />
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        What to do with the  <span class="italic-yellow-underline">img2text</span> result?
+                    </h2>
+                    <div>
+                        <p class="text-5xl font-semibold text-blue-500">“</p>
+                        <p
+                            id="img2text-wrapper"
+                        >
+                            {{currentValue}}
+                        </p>
+                    </div>
+                    <div id="card-actions">
+                        <form action="/search" method="post">
+                            <input
+                                type="hidden"
+                                name="query"
+                                value="{{ currentValue }}"
+                            />
+                            <button
+                                class="btn btn-bloc"
+                                onclick="button2loading(this)"
+                            >
+                                Search for Similar
+                            </button>
+                        </form>
+                        <form action="/generate" method="post">
+                            <input
+                                type="hidden"
+                                name="query"
+                                value="{{ currentValue }}"
+                            />
 
+                            <button
+                                class="btn btn-bloc btn-neutral"
+                                onclick="button2loading(this)"
+                            >
+                                Generate Better Prompts
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+        <script src="static/js/script.js"></script>
+    </body>
+</html>
