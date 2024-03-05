@@ -111,13 +111,13 @@
                 <form action="/pix2pix" method="POST" id="pix2pix_form">
                     <input type="hidden" name="query" value="{{ query }}">
                     <input type="hidden" name="model" value="{{ model }}">
-                    <input type="hidden" name="file_name" value="{{ file_name }}">
+                    <input id="file_name" type="hidden" name="file_name" value="{{ file_name }}">
                     <input type="hidden" name="generated_text" value="{{ generated_text }}">
                     <input type="hidden" name="img_stream" value="{{ img_stream }}">
                     <input type="hidden" name="flag" value="{{ flag }}">
                     <div class="label-instruct-group">
                         <span class="label-text"> Edit instruction</span>
-                        <input type="text" placeholder="Turn into a cartoon style"  name="inputprompt" id="pix2pix_textarea"/>
+                        <input type="text" placeholder="Add a bird to the sky"  name="inputprompt" id="pix2pix_textarea"/>
                     </div>
                     <div class="label-number-group steps">
                         <span class="label-text">Steps</span>

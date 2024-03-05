@@ -136,3 +136,20 @@ function submit_img_form(action, button) {
         form.submit();
     }, 1000);
 }
+
+// function deleteFile() {
+//     var fileName = document.getElementById("file_name").value;
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("DELETE", fileName, true);
+//     console.log("deleting file:", fileName);
+//     xhr.onreadystatechange = function() {
+//         if (xhr.readyState == 4) {
+//             if (xhr.status == 200) {
+//                 console.log("File deleted successfully");
+//             } else {
+//                 console.error("Failed to delete file: " + xhr.statusText);
+//             }
+//         }
+//     };
+//     xhr.send();
+// }

@@ -217,7 +217,7 @@ def pix2pix():
             img_cfg = 1.5
         print(steps, text_cfg, img_cfg)
         if not inputprompt:
-            inputprompt = "add a bird to the middle"
+            inputprompt = "add a bird to the sky"
 
         print("file_name", file_name)
         modified_img, flag_pix2pix = get_pix2pix_result(

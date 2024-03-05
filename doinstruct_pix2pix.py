@@ -29,7 +29,7 @@ def get_pix2pix_result(inputPromt, savePath, steps=10, text_cfg=7.5, img_cfg=1.5
     # driver = webdriver.Firefox(options=options)
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=chrome_options)
     script = """
@@ -75,10 +75,10 @@ def get_pix2pix_result(inputPromt, savePath, steps=10, text_cfg=7.5, img_cfg=1.5
             attempt += 1
             time.sleep(2)
 
-    driver.quit()
 
     if attempt == max_attempts:
         print("Element not found after maximum attempts.")
+        driver.quit()
         return None, False
 
     img_src = img_element.get_attribute("src")
@@ -101,6 +101,7 @@ def get_pix2pix_result(inputPromt, savePath, steps=10, text_cfg=7.5, img_cfg=1.5
     # )
     # print(output)
     # return output
+    driver.quit()
     return img_src, True
 
 
