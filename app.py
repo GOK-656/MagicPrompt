@@ -270,6 +270,7 @@ def generate():
             generated_text=generated_text,
             img_stream=img_stream,
             flag=flag,
+            flag_pix2pix=True,
         )
     elif request.method == "GET":
         query = "A mountain in spring with white cloud"
