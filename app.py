@@ -8,6 +8,7 @@ from doinstruct_pix2pix import *
 import tempfile
 from prompt_generator import *
 from load_drawingModels import *
+import uuid
 
 app = Flask(__name__)
 app.config["TEMP_FOLDER"] = "tmp/"
@@ -206,6 +207,8 @@ def pix2pix():
         steps = request.form.get("steps")
         text_cfg = request.form.get("text_cfg")
         img_cfg = request.form.get("image_cfg")
+        file_name = request.form.get("file_name")
+
         if not steps:
             steps = 10
         if not text_cfg:
@@ -216,8 +219,9 @@ def pix2pix():
         if not inputprompt:
             inputprompt = "add a bird to the middle"
 
+        print("file_name", file_name)
         modified_img, flag_pix2pix = get_pix2pix_result(
-            inputprompt, os.path.join("tmp", "temp.jpg"), steps, text_cfg, img_cfg
+            inputprompt, os.path.join("tmp", file_name), steps, text_cfg, img_cfg
         )
 
         # flag_pix2pix = False
@@ -230,6 +234,7 @@ def pix2pix():
             flag=flag,
             modified_img=modified_img,
             flag_pix2pix=flag_pix2pix,
+            file_name=file_name,
         )
 
 
@@ -260,8 +265,9 @@ def generate():
         print(flag)
         img_stream = ""
         if img_bytes:
+            file_name = str(uuid.uuid4()) + ".jpg"
             image = Image.open(io.BytesIO(img_bytes))
-            image.save(os.path.join("tmp", "temp.jpg"))
+            image.save(os.path.join("tmp", file_name))
             img_stream = base64.b64encode(img_bytes).decode("utf-8")
         return render_template(
             "generate.html",
@@ -271,6 +277,7 @@ def generate():
             img_stream=img_stream,
             flag=flag,
             flag_pix2pix=True,
+            file_name=file_name,
         )
     elif request.method == "GET":
         query = "A mountain in spring with white cloud"

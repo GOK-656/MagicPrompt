@@ -44,6 +44,8 @@ def get_pix2pix_result(inputPromt, savePath, steps=10, text_cfg=7.5, img_cfg=1.5
     file_input = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
     currentPath = os.getcwd()
     file_input.send_keys(os.path.join(currentPath, savePath))
+    print(savePath)
+    os.remove(savePath)
     textarea = driver.find_element(By.CSS_SELECTOR, "textarea[data-testid='textbox']")
     textarea.clear()
     textarea.send_keys(inputPromt)
