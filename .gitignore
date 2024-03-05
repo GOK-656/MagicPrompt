@@ -1,5 +1,6 @@
 __pycache__/
 .history/
 .DS_Store
+data/data.csv.zip
 tmp/*
 temp.jpg
