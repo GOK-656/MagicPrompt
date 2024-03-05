@@ -16,7 +16,7 @@
 }
 
 #introduce-header h1{
-    font-size: 28px;
+    font-size: 3em;
 }
 
 .results-wrapper{
@@ -39,4 +39,77 @@
 
 .results-wrapper:hover{
     animation-play-state: paused;
+}
+
+#input-wrapper-filter{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#input-wrapper-filter button:first-of-type{
+    margin-left: 4%
+}
+
+#input-wrapper-filter button{
+    margin-right: 2%;
+}
+
+#input-wrapper-filter button:last-of-type{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#input-wrapper{
+    width: 35vw;
+}
+
+#input-wrapper input:first-of-type{
+    width: 85%;
+}
+
+#img-icon{
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 998; 
+    display: none; 
+}
+
+.overlay.active {
+    display: block; 
+}
+
+#img-input-wrapper {
+    background-color: white;
+    z-index: 999;
+    position: fixed;
+    left: 30%;
+    top: 30%;
+    width: 40%;
+    height: 40%;
+    border-radius: 30px;
+    box-shadow: 2px 4px 12px rgba(0 0 0/0.08);
+    text-align: center;
+}
+
+#img-input-wrapper #img-input{
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    width: 90%;
+    height: 10%;
+    padding: 0;
+}
+
+#img-input-wrapper > div:first-child{
+    font-family: "DM Serif Display", Silkscreen, "Special Elite", "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
 }

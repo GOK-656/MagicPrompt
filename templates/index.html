@@ -31,18 +31,6 @@
                     <h1>Explore the world's best AIGC prompts.</h1>
                     <p>Prefer. Search again. No end.</p>
                 </div>
-                <form
-                    action="/submit_a_picture"
-                    method="post"
-                    enctype="multipart/form-data"
-                >
-                    <input
-                        type="file"
-                        id="img"
-                        name="img"
-                        accept="image/jpeg, image/png, image/bmp, image/tiff, image/webp, image/jpg"
-                    /><button type="submit">submit</button>
-                </form>
 
                 <div id="search-bar">
                     <form action="/search" method="POST" id="myForm">
@@ -56,24 +44,60 @@
                                     id="icon-magnifying-glass"
                                 />
                                 <input
+                                    id="search-input"
                                     type="text"
                                     name="query"
                                     placeholder="{{query}}"
                                 />
+                                <img
+                                    src="static/src/image-regular.svg"
+                                    alt="search icon"
+                                    width="15"
+                                    height="15"
+                                    id="img-icon"
+                                />
                             </div>
-                        </div>
-                        <button
-                            class="btn btn-neutral"
-                            onclick="submit_index_form('/search')"
-                        >
+                            <div class="overlay">
+                                <div id="img-input-wrapper">
+                                    <div>
+                                        Search any image with Magic Prompt
+                                    </div>
+                                    <form
+                                            action="/submit_a_picture"
+                                            method="post"
+                                            enctype="multipart/form-data"
+                                    >
+                                            <input
+                                                id="img-input"
+                                                type="file"
+                                                class="file-input file-input-bordered w-full max-w-xs"
+                                                name="img"
+                                                accept="image/jpeg, image/png, image/bmp, image/tiff, image/webp, image/jpg"
+                                            />
+                                    </form>
+                                </div>
+
+                            </div>
+                            <button
+                                class="btn btn-neutral"
+                                onclick="submit_index_form('/search')"
+                            >
+                            
                             Search
-                        </button>
-                        <button
-                            class="btn btn-outline"
-                            onclick="submit_index_form('/generate')"
-                        >
-                            Generate
-                        </button>
+                            </button>
+                            <button
+                                class="btn btn-outline"
+                                onclick="submit_index_form('/generate')"
+                            >
+                            <img
+                            src="static/src/feather-solid.svg"
+                            alt="search icon"
+                            width="15"
+                            height="15"
+                            />
+                                Generate
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -86,7 +110,7 @@
                         alt="Image"
                         onerror="imgError(this);"
                     />
-                    <div class="prompt-text-wrapper">
+                    <div class="prompt-text-wrapper">   
                         <p class="prompt-text-p">{{ value[0] }}</p>
                     </div>
                     <form action="/search" method="POST">

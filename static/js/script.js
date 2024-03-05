@@ -107,3 +107,12 @@ function button2loading(button) {
         form.submit();
     }, 1000);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchIcon = document.querySelector("#img-icon");
+    const overlay = document.querySelector(".overlay");
+
+    searchIcon.addEventListener("click", function () {
+        overlay.classList.toggle("active");
+    });
+});
