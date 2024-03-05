@@ -160,7 +160,7 @@ def submit_a_picture():
         # ans=getResult("Add an eyeglass above the eye")
         # print(ans)
         # print(ans[0])
-        img_stream = getResult("add a bird into the sky", save_path)
+        # img_stream = getResult("add a bird into the sky", save_path)
         os.remove(save_path)
         return render_template(
             "current_picture.html", currentValue=text, pic="0", img_stream=img_stream

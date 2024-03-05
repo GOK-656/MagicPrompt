@@ -68,29 +68,6 @@ copyButtons.forEach(function (button) {
     });
 });
 
-// const copyButtons_2 = document.querySelectorAll(".prompt-text-wrapper");
-// copyButtons_2.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//         console.log("copy button clicked");
-//         const text =
-//             this.parentNode.parentNode.querySelector(
-//                 ".prompt-text-p"
-//             ).textContent;
-//         navigator.clipboard.writeText(text).then(
-//             () => {
-//                 console.log("Copied to clipboard:", text);
-//                 this.classList.add("copied");
-//                 setTimeout(() => {
-//                     this.classList.remove("copied");
-//                 }, 200);
-//             },
-//             function (err) {
-//                 console.error("Async: Could not copy text: ", err);
-//             }
-//         );
-//     });
-// });
-
 function submit_index_form(action) {
     document.getElementById("indexForm").action = action;
     document.getElementById("indexForm").submit();
@@ -111,8 +88,27 @@ function button2loading(button) {
 document.addEventListener("DOMContentLoaded", function () {
     const searchIcon = document.querySelector("#img-icon");
     const overlay = document.querySelector(".overlay");
+    const closeButton = document.querySelector("#img-input-wrapper>button");
 
     searchIcon.addEventListener("click", function () {
         overlay.classList.toggle("active");
     });
+
+    closeButton.addEventListener("click", function () {
+        overlay.classList.remove("active");
+    });
 });
+
+function submit_img_form(action, button) {
+    const loadingSpan = document.createElement("span");
+    loadingSpan.classList.add("loading", "loading-spinner");
+    button.innerHTML = "";
+    button.appendChild(loadingSpan);
+    button.disabled = true;
+    var form = document.getElementById("imgForm");
+    form.action = action;
+    setTimeout(() => {
+        console.log("submitting form");
+        form.submit();
+    }, 1000);
+}

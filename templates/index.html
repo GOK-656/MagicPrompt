@@ -57,27 +57,7 @@
                                     id="img-icon"
                                 />
                             </div>
-                            <div class="overlay">
-                                <div id="img-input-wrapper">
-                                    <div>
-                                        Search any image with Magic Prompt
-                                    </div>
-                                    <form
-                                            action="/submit_a_picture"
-                                            method="post"
-                                            enctype="multipart/form-data"
-                                    >
-                                            <input
-                                                id="img-input"
-                                                type="file"
-                                                class="file-input file-input-bordered w-full max-w-xs"
-                                                name="img"
-                                                accept="image/jpeg, image/png, image/bmp, image/tiff, image/webp, image/jpg"
-                                            />
-                                    </form>
-                                </div>
-
-                            </div>
+                            
                             <button
                                 class="btn btn-neutral"
                                 onclick="submit_index_form('/search')"
@@ -99,6 +79,34 @@
                             </button>
                         </div>
                     </form>
+                    <div class="overlay">
+                        <div id="img-input-wrapper">
+                            <button class="btn btn-ghost btn-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                              </button>
+                            <div id="img-input-wrapper-group">
+                            <div>
+                                Search any image with Magic Prompt
+                            </div>
+                            <form
+                                id="imgForm"
+                                action="/submit_a_picture"
+                                method="post"
+                                enctype="multipart/form-data">
+                                    <div id="img-input-group">
+                                    <input
+                                        id="img-input"
+                                        type="file"
+                                        class="file-input file-input-bordered w-full max-w-xs"
+                                        name="img"
+                                        accept="image/jpeg, image/png, image/bmp, image/tiff, image/webp, image/jpg"
+                                    />
+                                    <button class="btn btn-outline" onclick="submit_img_form('/submit_a_picture', this)">Go!</button>
+                                    </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
