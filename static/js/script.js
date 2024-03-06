@@ -153,3 +153,36 @@ function submit_img_form(action, button) {
 //     };
 //     xhr.send();
 // }
+
+const dropzone = document.getElementById("dropzone");
+var fileInput = document.getElementById("dropzone-file");
+var submitButton = document.getElementById("img-submit-btn");
+const form = document.getElementById("imgForm");
+
+fileInput.addEventListener("change", function () {
+    if (fileInput.files.length > 0) {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
+});
+
+dropzone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropzone.classList.add("border-blue-500");
+});
+
+dropzone.addEventListener("dragleave", () => {
+    dropzone.classList.remove("border-blue-500");
+});
+
+dropzone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropzone.classList.remove("border-blue-500");
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        const file = files[0];
+        fileInput.files = files;
+        submitButton.disabled = false;
+    }
+});
