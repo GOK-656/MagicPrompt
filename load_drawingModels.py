@@ -2,10 +2,13 @@ import requests
 import io
 from PIL import Image
 import base64
+from get_key import get_key
 
 
 def query(payload, API_URL):
-    headers = {"Authorization": "Bearer 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"}
+    key = get_key()
+    # print(key)
+    headers = {"Authorization": f"Bearer {key}"}
     for _ in range(5):
         response = requests.post(API_URL, headers=headers, json=payload)
         if response.status_code == 200:

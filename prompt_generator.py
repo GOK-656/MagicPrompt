@@ -1,9 +1,10 @@
 import requests
-
+from get_key import get_key
 
 def prompt_generator(input_text):
     API_URL = "https://api-inference.huggingface.co/models/succinctly/text2image-prompt-generator"
-    headers = {"Authorization": "Bearer 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"}
+    key = get_key()
+    headers = {"Authorization": f"Bearer {key}"}
     input = {"inputs": input_text}
     while True:
         response = requests.post(API_URL, headers=headers, json=input)
