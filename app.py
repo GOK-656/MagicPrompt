@@ -151,6 +151,8 @@ def submit_a_picture():
         #     print(temp_file_path)
         #     img2url(open(temp_file_path, "rb"))
         img = Image.open(query)
+        if not os.path.exists("tmp"):
+            os.makedirs("tmp")
         save_path = os.path.join("tmp", query.filename)
         # save_path = "tmp/" + "tmp." + query.filename.split(".")[-1]
         print("save path: ", save_path)
