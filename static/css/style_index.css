@@ -47,7 +47,20 @@
 }
 
 #input-wrapper-filter button:first-of-type{
-    margin-left: 4%
+    margin-left: 4%;
+    border-radius: 30px;
+    width: 13%;
+    height: 50px;
+    /* color: black;
+    background-image: linear-gradient( 111.4deg,  rgba(238,113,113,1) 1%, rgba(246,215,148,1) 58% );
+    border: none; */
+    color: white;
+}
+
+#input-wrapper-filter button:first-of-type:hover{
+    /* background-image: none; */
+    background-color: transparent;
+    color: black;
 }
 
 #input-wrapper-filter button{
@@ -56,9 +69,12 @@
 }
 
 #input-wrapper-filter button:last-of-type{
+    width: 15%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    border-radius: 30px;
+    height: 50px;
 }
 
 #input-wrapper{

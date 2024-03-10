@@ -265,6 +265,8 @@ def generate():
             img_bytes, flag = midjourney_image(generated_text)
         elif model == "midjourney":
             img_bytes, flag = lexica_image(generated_text)
+        else:
+            img_bytes, flag = diffusion_image(generated_text)
 
         # print(img_stream)
         print(flag)
