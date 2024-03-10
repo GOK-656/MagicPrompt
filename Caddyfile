@@ -1,0 +1,10 @@
+{
+    log {
+        level error
+    }
+}
+:8080 {
+    route {
+        python "app:app"
+    }
+}

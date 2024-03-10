@@ -295,4 +295,4 @@ def generate():
 
 if __name__ == "__main__":
     # engine = initialize_all()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080)
