@@ -1,12 +1,12 @@
 import requests
-
+from get_key import get_key
 API_URL = (
     "https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-base"
 )
 
 # todo: api token
-API_TOKEN = "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"
-headers = {"Authorization": f"Bearer {API_TOKEN}"}
+key=get_key()
+headers = {"Authorization": f"Bearer {key}"}
 
 
 def image2textFilename(filename):
