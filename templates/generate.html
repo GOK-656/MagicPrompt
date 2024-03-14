@@ -41,6 +41,10 @@
                     </div>
         {% endif %}
         <grid>
+            <div class="func-title-wrapper">
+                <h2>Prompt Generator</h2>
+                <h3>Describe the scene and let us generate the prompt for you.</h3>  
+            </div>
             <form action="/generate" method="POST" id="img_generate_form">
                 <div id="both_text_wrapper">
                     <div class="label">
@@ -91,6 +95,11 @@
                     Generate
                 </button>
             </form>
+            <div class="func-title-wrapper">
+                <h2>Pix2Pix</h2>
+                <h3>Describe the image adjustments you desire.</h3>
+            </div>
+
             <div class="img_label_wrapper">
                 <div class="label">
                     <span class="label-text">Generated image</span>

@@ -162,8 +162,10 @@ const form = document.getElementById("imgForm");
 fileInput.addEventListener("change", function () {
     if (fileInput.files.length > 0) {
         submitButton.disabled = false;
+        dropzone.classList.add("grayed-out");
     } else {
         submitButton.disabled = true;
+        dropzone.classList.remove("grayed-out");
     }
 });
 
@@ -183,6 +185,7 @@ dropzone.addEventListener("drop", (e) => {
     if (files.length > 0) {
         const file = files[0];
         fileInput.files = files;
+        dropzone.classList.add("grayed-out");
         submitButton.disabled = false;
     }
 });
