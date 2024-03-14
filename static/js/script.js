@@ -68,9 +68,16 @@ copyButtons.forEach(function (button) {
     });
 });
 
-function submit_index_form(action) {
+function submit_index_form(button, action) {
     document.getElementById("indexForm").action = action;
-    document.getElementById("indexForm").submit();
+    const loadingSpan = document.createElement("span");
+    loadingSpan.classList.add("loading", "loading-spinner");
+    button.innerHTML = "";
+    button.appendChild(loadingSpan);
+    button.disabled = true;
+    setTimeout(() => {
+        document.getElementById("indexForm").submit();
+    }, 1000);
 }
 
 function button2loading(button) {
