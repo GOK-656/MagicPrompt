@@ -10,11 +10,25 @@ from prompt_generator import *
 from load_drawingModels import *
 import uuid
 from gevent import pywsgi
+import logging
+import sys
+import argparse
+from logging.handlers import TimedRotatingFileHandler
+import logging
+from environment import *
+
 app = Flask(__name__)
 app.config["TEMP_FOLDER"] = "tmp/"
 
 
 def initialize_all():
+    logFilename = runningMode + "app.log"
+    logHandler = TimedRotatingFileHandler(logFilename, when="midnight", backupCount=0)
+    logFormatter = logging.Formatter("%(asctime)s [%(levelname)s] %(filename)s - %(lineno)d %(message)s")
+    logHandler.setFormatter(logFormatter)
+    app.logger.setLevel(logLevelStringUpper)
+    app.logger.handlers = [logHandler]
+
     MAIN_INDEX_STEMMED = "Index_stemmed"
     STOPWORD_PATH = "data/stopwords.txt"
 
@@ -33,6 +47,11 @@ def initialize_all():
 
     bm25 = BM25(main_index)
     pipeline = Ranker(main_index, preprocessor, stopwords, bm25)
+    app.logger.log(logging.INFO, "This is a info message.")
+    app.logger.log(logging.ERROR, "This is a error message")
+    app.logger.log(logging.WARNING, "This is a warning message")
+    app.logger.log(logging.DEBUG, "This is a debug message")
+    app.logger.log(logging.CRITICAL, "This is a critical message")
     return pipeline
 
 
@@ -67,7 +86,6 @@ engine = initialize_all()
 @app.route("/")
 def home():
     query = "A mountain in spring with white cloud"
-    print(query)
     prompts, urls = get_results_all(engine, query, 200)
     result = list(zip(prompts, urls))
     return render_template("index.html", result=result, query=query)
@@ -84,12 +102,13 @@ def search():
         medium = request.form.get("medium")
         light = request.form.get("light")
         quality = request.form.get("quality")
-        print(query)
-        print(style)
-        print(scene)
-        print(medium)
-        print(light)
-        print(quality)
+        app.logger.log(logging.INFO,f'{query} {style} {scene} {medium} {light} {quality}')
+        # print(query)
+        # print(style)
+        # print(scene)
+        # print(medium)
+        # print(light)
+        # print(quality)
         args = [style, scene, medium, light, quality]
         prompts, urls = get_results_all(engine, query, 200, args)
         result = list(zip(prompts, urls))
@@ -151,7 +170,7 @@ def submit_a_picture():
             query = request.files["img"]
             print("query:img")
             text = image2textData(query)
-            print("queryText:"+text)
+            print("queryText:" + text)
             # with tempfile.NamedTemporaryFile() as temp_file:
             #     query.save(temp_file.name)
             #     temp_file_path = temp_file.name
@@ -174,7 +193,10 @@ def submit_a_picture():
             # img_stream = get_pix2pix_result("add a bird to sky", save_path)
             os.remove(save_path)
             return render_template(
-                "current_picture.html", currentValue=text, pic="0", img_stream=img_stream
+                "current_picture.html",
+                currentValue=text,
+                pic="0",
+                img_stream=img_stream,
             )
         except Exception as e:
             print(e)
@@ -304,9 +326,46 @@ def generate():
     return redirect(url_for("home"))
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # engine = initialize_all()
     # app.run(host="0.0.0.0", port=8080)
     # app.run(debug=True)
-    server = pywsgi.WSGIServer(("0.0.0.0", 8080), app)
-    server.serve_forever()
+    # parser = argparse.ArgumentParser(description="Deploy the app")
+    # parser.add_argument(
+    #     "--dev",
+    #     action="store_true",
+    #     help="enable development mode",
+    # )
+    # args = parser.parse_args()
+
+    # if args.dev:
+    #     myPort = 8001
+    #     logging.basicConfig(
+    #         level=logging.DEBUG,
+    #         filename="devlog.log",
+    #         format="%(asctime)s:%(levelname)s:%(name)s -- %(message)s",
+    #         datefmt="%Y/%m/%d %H:%M:%S",
+    #     )
+    #     handler = TimedRotatingFileHandler(
+    #         "flask.log",
+    #         when="D",
+    #         interval=1,
+    #         backupCount=15,
+    #         encoding="UTF-8",
+    #         delay=False,
+    #         utc=True,
+    #     )
+
+    # else:
+    #     myPort = 8000
+    #     logging.basicConfig(
+    #         level=logging.ERROR,
+    #         filename="log.log",
+    #         format="%(asctime)s:%(levelname)s:%(name)s -- %(message)s",
+    #         datefmt="%Y/%m/%d %H:%M:%S",
+    #     )
+    # server = pywsgi.WSGIServer(("0.0.0.0", myPort), app, handler_class=WebSocketHandler)
+    # server.serve_forever()
+
+
+#  RUN gunicorn --config config.py app:app
