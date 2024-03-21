@@ -1,7 +1,7 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from environment import *
-bind = "127.0.0.1:8000"
+bind = "127.0.0.1:8000" if runningMode=="deploy_" else "127.0.0.1:8001"
 workers = 1
 
 loglevel=logLevelStringLower
