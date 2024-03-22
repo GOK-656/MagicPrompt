@@ -322,7 +322,7 @@ class Indexer:
     def create_index(index_type: IndexType, dataset_path: str,
                      document_preprocessor: Tokenizer, stopwords: set[str],
                      minimum_word_frequency: int, text_key="prompt",
-                     max_docs: int = -1, doc_augment_dict: dict[int, list[str]] | None = None) -> InvertedIndex:
+                     max_docs: int = -1, doc_augment_dict = None) -> InvertedIndex:
         """
         Creates an inverted index.
 

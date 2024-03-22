@@ -1,0 +1,34 @@
+2024-03-22 00:34:18,064 [INFO] app.py - 50 This is a info message.
+2024-03-22 00:34:18,065 [ERROR] app.py - 51 This is a error message
+2024-03-22 00:34:18,065 [WARNING] app.py - 52 This is a warning message
+2024-03-22 00:34:18,066 [DEBUG] app.py - 53 This is a debug message
+2024-03-22 00:34:18,066 [CRITICAL] app.py - 54 This is a critical message
+2024-03-22 00:34:31,791 [INFO] app.py - 105 A mountain in spring with white cloud None None None None None
+2024-03-22 00:34:32,260 [ERROR] app.py - 825 Exception on /search [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/luyan/Code/MagicPrompt/app.py", line 113, in search
+    prompts, urls = get_results_all(engine, query, 200, args)
+  File "/Users/luyan/Code/MagicPrompt/app.py", line 62, in get_results_all
+    df = pd.read_csv(DATASET_CSV_PATH)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 617, in _read
+    return parser.read(nrows)
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1748, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+  File "/usr/local/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "parsers.pyx", line 843, in pandas._libs.parsers.TextReader.read_low_memory
+  File "parsers.pyx", line 904, in pandas._libs.parsers.TextReader._read_rows
+  File "parsers.pyx", line 879, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "parsers.pyx", line 890, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "parsers.pyx", line 2050, in pandas._libs.parsers.raise_parser_error
+TypeError: raise: exception class must be a subclass of BaseException
