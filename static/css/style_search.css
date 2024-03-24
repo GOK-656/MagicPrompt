@@ -39,6 +39,10 @@ nav {
     margin: 0 10px;
 }
 
+#nav-link img{
+    display: inline;
+}
+
 #nav-link a:hover{
    color: #565564 
 }
