@@ -307,6 +307,6 @@ def generate():
 if __name__ == "__main__":
     # engine = initialize_all()
     # app.run(host="0.0.0.0", port=8080)
-    # app.run(debug=True)
-    server = pywsgi.WSGIServer(("0.0.0.0", 8080), app)
-    server.serve_forever()
+    app.run(debug=True)
+    # server = pywsgi.WSGIServer(("0.0.0.0", 8080), app)
+    # server.serve_forever()
