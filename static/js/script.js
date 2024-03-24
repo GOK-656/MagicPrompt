@@ -196,3 +196,30 @@ dropzone.addEventListener("drop", (e) => {
         submitButton.disabled = false;
     }
 });
+
+function base64ToBlob(base64Data, contentType) {
+    var byteString = atob(base64Data.split(",")[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: contentType });
+}
+
+function downloadImage(svgElement) {
+    var imgElement = svgElement.parentElement.querySelector("img");
+    var imgBase64 = imgElement.src;
+
+    var filename = "image.jpg";
+
+    var blob = base64ToBlob(imgBase64, "image/jpeg");
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}

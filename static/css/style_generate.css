@@ -110,6 +110,7 @@
     aspect-ratio: 1 / 1;
     grid-column: 3 / span 1;
     /* grid-row: 1 / span 1; */
+    position: relative;
 }
 
 .img_wrapper img{
@@ -117,6 +118,18 @@
     max-height: 100%;
     margin: 0 auto;
     border-radius: 15px 15px 15px 15px;
+}
+
+.generate_download{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+}
+
+.img_wrapper:hover .generate_download{
+    display: block;
+    cursor: pointer;
 }
 
 grid {
