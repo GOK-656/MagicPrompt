@@ -266,17 +266,19 @@ def generate():
         flag = True
 
         img_bytes = None
-        if model == "stable_diffusion":
-            img_bytes, flag = diffusion_image(generated_text)
-        elif model == "lora":
-            img_bytes, flag = lora_image(generated_text)
-        elif model == "lexica":
-            img_bytes, flag = midjourney_image(generated_text)
-        elif model == "midjourney":
-            img_bytes, flag = lexica_image(generated_text)
-        else:
-            img_bytes, flag = diffusion_image(generated_text)
-
+        # if model == "stable_diffusion":
+        #     img_bytes, flag = diffusion_image(generated_text)
+        # elif model == "lora":
+        #     img_bytes, flag = lora_image(generated_text)
+        # elif model == "lexica":
+        #     img_bytes, flag = midjourney_image(generated_text)
+        # elif model == "midjourney":
+        #     img_bytes, flag = lexica_image(generated_text)
+        # else:
+        #     img_bytes, flag = diffusion_image(generated_text)
+        
+        img_bytes, flag = ImageGenerator().draw(model, generated_text)
+        
         # print(img_stream)
         print(flag)
         img_stream = ""

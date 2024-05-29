@@ -413,3 +413,31 @@ https://colorhunt.co/palette/ff90bcffc0d9f9f9e08acdd7
 #no-results{
     grid-column: 1 / -1;
 }
+
+
+@media screen and (max-width: 600px){
+    .single-result-card{
+        height: 30vh;
+    }
+
+    nav {
+        width: 100vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #nav-title{
+        margin-left: 0;
+    }
+
+    #nav-link {
+        margin-right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #nav-link a{
+        margin: 5px 5px;
+    }
+}

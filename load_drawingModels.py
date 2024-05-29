@@ -5,86 +5,36 @@ import base64
 from get_key import get_key
 
 
-def query(payload, API_URL):
-    key = get_key()
-    # print(key)
-    headers = {"Authorization": f"Bearer {key}"}
-    for _ in range(5):
-        response = requests.post(API_URL, headers=headers, json=payload)
-        if response.status_code == 200:
-            return response.content
-    print('Server too busy')
-    return None
+class ImageGenerator:
+    def __init__(self):
+        self.key = get_key()
+        self.urls = {
+            "stable_diffusion": "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5",
+            "lexica": "https://api-inference.huggingface.co/models/openskyml/lexica-aperture-v3-5",
+            "lora": "https://api-inference.huggingface.co/models/openskyml/lcm-lora-sdxl-turbo",
+            "midjourney": "https://api-inference.huggingface.co/models/openskyml/midjourney-v4-xl",
+        }
 
-
-# files saved at diffusion_image.jpeg
-def diffusion_image(inputPromt):
-    API_URL = (
-        "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
-    )
-
-    image_bytes = query(
-        {"inputs": inputPromt},
-        API_URL=API_URL,
-    )
-    if image_bytes is None:
-        return None, False
-    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
-    # image = Image.open(io.BytesIO(image_bytes))
-    # image.save("diffusion_image.jpeg")
-    return image_bytes, True
-
-
-def lexica_image(inputPromt):
-    API_URL = (
-        "https://api-inference.huggingface.co/models/openskyml/lexica-aperture-v3-5"
-    )
-
-    image_bytes = query(
-        {"inputs": inputPromt},
-        API_URL=API_URL,
-    )
-    if image_bytes is None:
-        return None, False
-    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
-    # image = Image.open(io.BytesIO(image_bytes))
-    # image.save("diffusion_image.jpeg")
-    return image_bytes, True
-
-
-def lora_image(inputPromt):
-    API_URL = (
-        "https://api-inference.huggingface.co/models/openskyml/lcm-lora-sdxl-turbo"
-    )
-
-    image_bytes = query(
-        {"inputs": inputPromt},
-        API_URL=API_URL,
-    )
-    if image_bytes is None:
-        return None, False
-    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
-    # image = Image.open(io.BytesIO(image_bytes))
-    # image.save("diffusion_image.jpeg")
-    return image_bytes, True
-
-
-def midjourney_image(inputPromt):
-    API_URL = "https://api-inference.huggingface.co/models/openskyml/midjourney-v4-xl"
-
-    image_bytes = query(
-        {"inputs": inputPromt},
-        API_URL=API_URL,
-    )
-    if image_bytes is None:
-        return None, False
-    # image_base64 = base64.b64encode(image_bytes).decode("utf-8")
-    # image = Image.open(io.BytesIO(image_bytes))
-    # image.save("diffusion_image.jpeg")
-    return image_bytes, True
-
+    def query(self, payload, API_URL):
+        headers = {"Authorization": f"Bearer {self.key}"}
+        for _ in range(5):
+            response = requests.post(API_URL, headers=headers, json=payload)
+            if response.status_code == 200:
+                return response.content
+        print('Server too busy')
+        return None
+    
+    def draw(self, model_name, input_prompt):
+        API_URL = self.urls[model_name]
+        image_bytes = self.query(
+            {"inputs": input_prompt},
+            API_URL=API_URL,
+        )
+        if image_bytes is None:
+            return None, False
+        return image_bytes, True
 
 # # You can access the image with PIL.Image for example
 # import io
 # from PIL import Image
-# print(diffusion_image("A big elephant"))
+# ImageGenerator().draw("stable_diffusion", "A big elephant")
