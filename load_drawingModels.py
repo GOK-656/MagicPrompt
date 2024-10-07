@@ -9,7 +9,7 @@ def query(payload, API_URL):
     key = get_key()
     # print(key)
     headers = {"Authorization": f"Bearer {key}"}
-    for _ in range(5):
+    for _ in range(15):
         response = requests.post(API_URL, headers=headers, json=payload)
         if response.status_code == 200:
             return response.content
