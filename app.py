@@ -151,6 +151,7 @@ def submit_a_picture():
             query = request.files["img"]
             print("query:img")
             text = image2textData(query)
+            # text = "大海上的日落，船在远方"
             print("queryText:"+text)
             # with tempfile.NamedTemporaryFile() as temp_file:
             #     query.save(temp_file.name)
