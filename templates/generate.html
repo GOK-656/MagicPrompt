@@ -12,9 +12,9 @@
     <nav>
         <div id="nav-title"><a href="/">Magic Prompt</a></div>
         <div id="nav-link">
-            <a href="/">Home</a>
-            <a href="/search">Search</a>
-            <a href="/generate" class="page_this">Generate</a>
+            <a href="/">主页</a>
+            <a href="/search">搜索</a>
+            <a href="/generate" class="page_this">生成</a>
             <a href="https://github.com/GOK-656/MagicPrompt">
                 <img
                     src="static/src/github.svg"
@@ -49,13 +49,13 @@
         {% endif %}
         <grid>
             <div class="func-title-wrapper">
-                <h2>Prompt Generator</h2>
-                <h3>Describe the scene and let us generate the prompt for you.</h3>  
+                <h2>Prompt 生成器</h2>
+                <h3>描述场景，让我们为您生成提示。</h3>  
             </div>
             <form action="/generate" method="POST" id="img_generate_form">
                 <div id="both_text_wrapper">
                     <div class="label">
-                        <span class="label-text">Describe the scene</span>
+                        <span class="label-text">描述场景</span>
                     </div>
                     <div id="query_textarea_div">
                         <textarea placeholder="{{query}}" name="query"
@@ -72,7 +72,7 @@
 
                 <div id="model_selector">
                     <div class="label">
-                        <span class="label-text">Pick the model</span>
+                        <span class="label-text"></span>
                     </div>
                     <select class="select select-bordered w-full max-w-xs" name="model">
                         {% if model == "stable_diffusion"%}
@@ -99,17 +99,17 @@
                 </div>
 
                 <button class="btn btn-neutral" id="generate_button" onclick="button2loading(this)">
-                    Generate
+                    生成
                 </button>
             </form>
             <div class="func-title-wrapper">
                 <h2>Pix2Pix</h2>
-                <h3>Describe the image adjustments you desire.</h3>
+                <h3>描述您想要的图像调整。</h3>
             </div>
 
             <div class="img_label_wrapper">
                 <div class="label">
-                    <span class="label-text">Generated image</span>
+                    <span class="label-text">生成图片</span>
                 </div>
                 <div class="img_wrapper">
                     {% if img_stream %}
@@ -133,28 +133,28 @@
                     <input type="hidden" name="img_stream" value="{{ img_stream }}">
                     <input type="hidden" name="flag" value="{{ flag }}">
                     <div class="label-instruct-group">
-                        <span class="label-text"> Edit instruction</span>
-                        <input type="text" placeholder="Add a bird to the sky"  name="inputprompt" id="pix2pix_textarea"/>
+                        <span class="label-text"> 编辑指令</span>
+                        <input type="text" placeholder="在天上加一只鸟"  name="inputprompt" id="pix2pix_textarea"/>
                     </div>
                     <div class="label-number-group steps">
-                        <span class="label-text">Steps</span>
+                        <span class="label-text">步数</span>
                         <input type="number" name="steps" placeholder="10" min="0">
                     </div>
 
                     <div class="label-number-group text-cfg">
-                        <span class="label-text">Text CFG</span>
+                        <span class="label-text">文本权重</span>
                         <input type="number" name="text_cfg" placeholder="7.5" min="0">
                     </div>
                     
                     <div class="label-number-group img-cfg">
-                        <span class="label-text">Img CFG</span>
+                        <span class="label-text">图片权重</span>
                         <input type="number" name="image_cfg" placeholder="1.5" min="0">
                     </div>
                 </form>
                 <form action="/reset" method="POST" id="reset_form">
                 </form>
                 <button class="btn btn-outline" id="reset_button" onclick="button2reset(this)">
-                    Reset
+                   重置 
                 </button>
                 <button class="btn btn-neutral" id="pix2pix_button" onclick="button2pix2pix(this)">
                     Pix2Pix
@@ -163,7 +163,7 @@
             </div>
             <div class="img_label_wrapper" id="modified-img-g-wrapper">
                 <div class="label">
-                    <span class="label-text">Pix2Pix modified image</span>
+                    <span class="label-text">Pix2Pix 修改的图片</span>
                 </div>
                 <div class="img_wrapper">
                     {% if modified_img %}

@@ -19,9 +19,9 @@
         <nav>
             <div id="nav-title"><a href="/">Magic Prompt</a></div>
             <div id="nav-link">
-                <a href="/" class="page_this">Home</a>
-                <a href="/search">Search</a>
-                <a href="/generate">Generate</a>
+                <a href="/" class="page_this">主页</a>
+                <a href="/search">搜索</a>
+                <a href="/generate">生成</a>
                 <a href="https://github.com/GOK-656/MagicPrompt">
                     <img
                         src="static/src/github.svg"
@@ -36,8 +36,8 @@
         <main>
             <div id="search-header">
                 <div id="introduce-header">
-                    <h1>Explore the world's best AIGC prompts.</h1>
-                    <p>A Hub for AIGC Prompts. Let's Search and Generate.</p>
+                    <h1>探索世界上最好的AIGC Prompt</h1>
+                    <p>AIGC Prompt都汇聚于此。让我们搜索并生成。</p>
                 </div>
 
                 <div id="search-bar">
@@ -55,7 +55,7 @@
                                     id="search-input"
                                     type="text"
                                     name="query"
-                                    placeholder="{{query}}"
+                                    placeholder="春天的一座山，有白云"
                                 />
                                 <img
                                     src="static/src/image-regular.svg"
@@ -70,7 +70,7 @@
                                 class="btn btn-neutral"
                                 onclick="submit_index_form(this, '/search')"
                             >
-                                Search
+                                搜索
                             </button>
                             <button
                                 class="btn btn-outline"
@@ -82,8 +82,7 @@
                                     width="15"
                                     height="15"
                                 />
-                                Generate
-                            </button>
+                                生成                            </button>
                         </div>
                     </form>
                     <div class="overlay">
@@ -105,7 +104,7 @@
                                 </svg>
                             </button>
                             <div id="img-input-wrapper-group">
-                                <div>Search any image with Magic Prompt</div>
+                                <div>使用Magic Prompt搜索任何图像</div>
                                 <form
                                     id="imgForm"
                                     action="/submit_a_picture"
@@ -165,9 +164,9 @@
                         />
                         <!-- <input type="hidden" name="query" value="{{ value[2] }}" /> -->
                         <!-- <input type="hidden" name="title" value="{{ value[0] }}" /> -->
-                        <input type="submit" value="Find Similar" />
+                        <input type="submit" value="找相似" />
                         <div class="pick-this">
-                            <span>Copy</span>
+                            <span>复制</span>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="16"

@@ -16,9 +16,9 @@
         <nav>
             <div id="nav-title"><a href="/">Magic Prompt</a></div>
             <div id="nav-link">
-                <a href="/" >Home</a>
-                <a href="/search" class="page_this">Search</a>
-                <a href="/generate">Generate</a>
+                <a href="/" >主页</a>
+                <a href="/search" class="page_this">搜索</a>
+                <a href="/generate">生成</a>
                 <a href="https://github.com/GOK-656/MagicPrompt">
                     <img
                         src="static/src/github.svg"
@@ -50,7 +50,7 @@
                                     id="search-input"    
                                     type="text"
                                     name="query"
-                                    placeholder="A mountain in spring"
+                                    placeholder="春天的一座山，有白云"
                                     value="{{query}}"
                                 />
                             </div>
@@ -67,7 +67,7 @@
                         <div id="multiselect-wrapper">
                             <!-- multiselect for style-->
                             <div class="multiselect-single-wrapper">
-                                <label for="style">Style</label>
+                                <label for="style">风格</label>
                                 <div id="multiselect-style">
                                     <div
                                         class="ui multiple selection dropdown"
@@ -99,7 +99,7 @@
                                         <i class="dropdown icon"></i>
                                         {% endif %}
                                         <div class="default text">
-                                            Choose a style.
+                                            挑选风格
                                         </div>
                                         <div class="menu">
                                             <div
@@ -331,7 +331,7 @@
 
                             <!-- multiselect for medium-->
                             <div class="multiselect-single-wrapper">
-                                <label for="medium">Medium</label>
+                                <label for="medium">媒介</label>
                                 <div id="multiselect-medium">
                                     <div
                                         class="ui multiple selection dropdown"
@@ -363,7 +363,7 @@
                                         <i class="dropdown icon"></i>
                                         {% endif %}
                                         <div class="default text">
-                                            Choose a medium.
+                                            挑选媒介
                                         </div>
                                         <div class="menu">
                                             <div
@@ -433,7 +433,7 @@
 
                             <!-- multiselect for light-->
                             <div class="multiselect-single-wrapper">
-                                <label for="light">Light</label>
+                                <label for="light">光线</label>
                                 <div id="multiselect-light">
                                     <div
                                         class="ui multiple selection dropdown"
@@ -465,7 +465,7 @@
                                         <i class="dropdown icon"></i>
                                         {% endif %}
                                         <div class="default text">
-                                            Choose a light.
+                                            挑选光线
                                         </div>
                                         <div class="menu">
                                             <div
@@ -553,7 +553,7 @@
 
                             <!-- multiselect for quality-->
                             <div class="multiselect-single-wrapper">
-                                <label for="quality">Quality</label>
+                                <label for="quality">分辨率</label>
                                 <div id="multiselect-quality">
                                     <div
                                         class="ui multiple selection dropdown"
@@ -585,7 +585,7 @@
                                         <i class="dropdown icon"></i>
                                         {% endif %}
                                         <div class="default text">
-                                            Choose a quality.
+                                            挑选分辨率
                                         </div>
                                         <div class="menu">
                                             <div class="item" data-value="16k">
@@ -604,25 +604,25 @@
                                                 class="item"
                                                 data-value="high-resolution"
                                             >
-                                                High Resolution
+                                                高分辨率
                                             </div>
                                             <div
                                                 class="item"
                                                 data-value="low-resolution"
                                             >
-                                                Low Resolution
+                                                低分辨率
                                             </div>
                                             <div
                                                 class="item"
                                                 data-value="high-quality"
                                             >
-                                                High Quality
+                                                高质量
                                             </div>
                                             <div
                                                 class="item"
                                                 data-value="low-quality"
                                             >
-                                                Low Quality
+                                                低质量
                                             </div>
                                         </div>
                                     </div>
@@ -631,7 +631,7 @@
 
                             <!-- multiselect for scene-->
                             <div class="multiselect-single-wrapper">
-                                <label for="scene">Scene</label>
+                                <label for="scene">场景</label>
                                 <div id="multiselect-scene">
                                     <div
                                         class="ui multiple selection dropdown"
@@ -663,7 +663,7 @@
                                         <i class="dropdown icon"></i>
                                         {% endif %}
                                         <div class="default text">
-                                            Choose a scene.
+                                            挑选场景
                                         </div>
                                         <div class="menu">
                                             <div
@@ -841,9 +841,9 @@
                         />
                         <!-- <input type="hidden" name="query" value="{{ value[2] }}" /> -->
                         <!-- <input type="hidden" name="title" value="{{ value[0] }}" /> -->
-                        <input type="submit" value="Find Similar" />
+                        <input type="submit" value="找相似" />
                         <div class="pick-this">
-                            <span>Copy</span>
+                            <span>复制</span>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="16"
